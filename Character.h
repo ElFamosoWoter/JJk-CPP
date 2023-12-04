@@ -37,5 +37,6 @@ public:
 	int getSukunaFingers();
 	void setSukunaFingers(int sf);
 
+	void attack(Character target);
 
 };

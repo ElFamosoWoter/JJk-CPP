@@ -62,3 +62,8 @@ void Character::setSukunaFingers(int sf)
 	else sukunaFingers = sf;
 
 }
+
+void Character::attack(Character target)
+{
+	target.setHp(target.getHp() - getAttack());
+}
