@@ -1,6 +1,6 @@
-/*#include <iostream>
-#include <Windows.h>
-#include <mmsystem.h>
+#include <Character.h>
+
+/*
 
 #pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
 
