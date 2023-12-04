@@ -1,4 +1,5 @@
 #include "Character.h"
+#include <iostream>
 
 int Character::getHp()
 {
@@ -36,7 +37,7 @@ void Character::setDomaine(EDomainExtension e)
 
 void Character::setDomaine(int index)
 {	
-	if (index < 0 && index>2) domain = EDomainExtension::None;
+	if (index < 0 && index>2) domain = EDomainExtension::Pas;
 	domain = static_cast<EDomainExtension>(index);
 }
 

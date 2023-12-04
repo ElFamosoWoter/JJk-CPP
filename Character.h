@@ -3,7 +3,7 @@
 
 enum EDomainExtension
 {
-	None,
+	Pas,
 	InfiniteVoid,
 	CoffinOfTheIronMontain,
 };	

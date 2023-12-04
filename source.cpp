@@ -48,6 +48,12 @@ void afficherimage(string image) {
     }
 }
 
+//Clear un tableau
+void clearTableau(int tableau[], int taille) {
+    for (int i = 0; i < taille; ++i) {
+        tableau[i] = 0; // Assigner la valeur par défaut
+    }
+}
 
 
 int main() {
@@ -56,38 +62,65 @@ int main() {
 
     // Votre code ici...
 
-    modifpolice(2, 6);
+    //modifpolice(2, 6);
 
-    afficherimage("imageAscii/logo.txt");
+    //afficherimage("imageAscii/logo.txt");
     //playmusic("imademo.wav");
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
-    char touche = _getch();
-
+    char touchez = _getch();
+    int tab[3]{31, 17, 17};
+    int tab1[3]{};
+    int i = -1;
     do {
-            touche = _getch();  // Récupérer la valeur spécifique à la flèche
+        int touche = _getch();  // Récupérer la valeur spécifique à la flèche
+
+        if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
+            touche = _getch();  // Lire le code spécifique à la touche de direction
+            i++;
             switch (touche) {
             case 72:  // Flèche vers le haut
-                clearConsole();
                 cout << char(30);
-                modifpolice(32, 36);
+                tab1[i] = 30;
                 break;
 
             case 80:  // Flèche vers le bas
                 cout << char(31);
+                tab1[i] = 31;
                 break;
 
             case 75:  // Flèche vers la gauche
                 cout << char(17);
+                tab1[i] = 17;
                 break;
 
             case 77:  // Flèche vers la droite
                 cout << char(16);
+                tab1[i] = 16;
                 break;
 
             default:
                 break;
             }
-    } while (touche != 'q');
+        }
+        else if (touche == 13) { // Touche "Enter"
+            bool mauvaiscombo = false;
+            i = -1;
+            std::cout << "Touche 'Enter' appuyee." << std::endl;
+            for (int j = 0; j < 3; j++) {
+                if (tab[j] == tab1[j]) {
+                    cout << endl;
+                    cout << "Bien" << tab[j] << " " << tab1[j] << endl;
+                }
+                else {
+                    mauvaiscombo = true;
+                }
+            }
+            clearTableau(tab1, 3);
+            if (!mauvaiscombo) {
+                touchez = 'q';
+            }
+        }
+    } while (touchez != 'q');
 
     return 0;
 }
