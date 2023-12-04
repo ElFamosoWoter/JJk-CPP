@@ -2,14 +2,22 @@
 #include <string>
 #include <Windows.h>
 #include <mmsystem.h>
+#include <fstream>
 #pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
 
 using namespace std;
 
 int main() {
-    cout << char(30) << endl;
-    cout << char(17) << char(31) << char(16) << endl;
+    //cout << char(30) << endl;
+    //cout << char(17) << char(31) << char(16) << endl;
 
+    ifstream infile("imageAscii/logo.txt");
+    if (infile.is_open()) {
+        string line;
+        while (getline(infile, line)) {
+            cout << line << endl;
+        }
+    }
 
     // Nom du fichier son à jouer
     const char* imademo = "special.wav";
