@@ -1,7 +1,5 @@
 #pragma once
-#include <iostream>
-#include <Windows.h>
-#include <mmsystem.h>
+#include "DomainExpension.h"
 
 enum EDomainExtension
 {
@@ -18,10 +16,22 @@ private:
 	EDomainExtension domain ;
 	int occultEnergy;
 	int sukunaFingers;
+	bool canAttack;
 
 
 public:
+	
+	/*
+	@return health
+	*/
 	int getHp();
+
+
+
+	/*		
+	@param health : set a new health
+	@return return new health
+	*/
 	void setHp(int health);
 
 	int getAttack();
