@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <mmsystem.h>
 
-enum EDomainExtention
+enum EDomainExtension
 {
 	None,
 	InfiniteVoid,
@@ -15,7 +15,7 @@ class Character
 private:
 	int hp;
 	int attack;
-	EDomainExtention domain ;
+	EDomainExtension domain ;
 	int occultEnergy;
 	int sukunaFingers;
 
@@ -27,8 +27,8 @@ public:
 	int getAttack();
 	void setAttach(int a);
 
-	EDomainExtention getDomain();
-	void setDomaine(EDomainExtention e);
+	EDomainExtension getDomain();
+	void setDomaine(EDomainExtension e);
 	void setDomaine(int index);
 
 	int getOccultEnergy();
@@ -37,6 +37,6 @@ public:
 	int getSukunaFingers();
 	void setSukunaFingers(int sf);
 
-	void attack(Character target);
+	void PlayerAttack(Character target);
 
 };

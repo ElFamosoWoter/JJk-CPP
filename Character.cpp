@@ -24,20 +24,20 @@ void Character::setAttach(int a)
 	
 }
 
-EDomainExtention Character::getDomain()
+EDomainExtension Character::getDomain()
 {
 	return domain;
 }
 
-void Character::setDomaine(EDomainExtention e)
+void Character::setDomaine(EDomainExtension e)
 {
 	domain = e;
 }
 
 void Character::setDomaine(int index)
 {	
-	if (index < 0 && index>2) domain = EDomainExtention::None;
-	domain = static_cast<EDomainExtention>(index);
+	if (index < 0 && index>2) domain = EDomainExtension::None;
+	domain = static_cast<EDomainExtension>(index);
 }
 
 int Character::getOccultEnergy()
@@ -63,7 +63,7 @@ void Character::setSukunaFingers(int sf)
 
 }
 
-void Character::attack(Character target)
+void Character::PlayerAttack(Character target)
 {
 	target.setHp(target.getHp() - getAttack());
 }
