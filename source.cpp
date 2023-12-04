@@ -1,21 +1,29 @@
-#include "Character.h"
-//#pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
+#include <iostream>
+#include <string>
+#include <Windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
+
+using namespace std;
 
 int main() {
-    std::cout << "hello world" << std::endl;
-    //// Nom du fichier son à jouer
-    //const char* imademo = "special.wav";
+    cout << char(30) << endl;
+    cout << char(17) << char(31) << char(16) << endl;
 
-    //// Jouer le son
-    //if (PlaySoundA(imademo, NULL, SND_FILENAME | SND_ASYNC) == 0) {
-    //    std::cerr << "Erreur lors de la lecture du son : " << GetLastError() << std::endl;
-    //    return 1;
-    //}
 
-    //// Attendre que le son soit terminé
-    //Sleep(90000);  // Vous pouvez ajuster cette valeur en fonction de la durée de votre son
+    // Nom du fichier son à jouer
+    const char* imademo = "special.wav";
 
-    //return 0;
+    // Jouer le son
+    if (PlaySoundA(imademo, NULL, SND_FILENAME | SND_ASYNC) == 0) {
+        std::cerr << "Erreur lors de la lecture du son : " << GetLastError() << std::endl;
+        return 1;
+    }
+
+    // Attendre que le son soit terminé
+    Sleep(90000);  // Vous pouvez ajuster cette valeur en fonction de la durée de votre son
+
+    return 0;
 }
 
 
