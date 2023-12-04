@@ -5,6 +5,7 @@
 
 enum EDomainExtention
 {
+	None,
 	InfiniteVoid,
 	CoffinOfTheIronMontain,
 };	
@@ -21,20 +22,20 @@ private:
 
 public:
 	int getHp();
-	int setHp(int health);
+	void setHp(int health);
 
 	int getAttack();
-	int setAttach(int a);
+	void setAttach(int a);
 
 	EDomainExtention getDomain();
 	void setDomaine(EDomainExtention e);
 	void setDomaine(int index);
 
 	int getOccultEnergy();
-	int setOccultEnergy(int oe);
+	void setOccultEnergy(int oe);
 
 	int getSukunaFingers();
-	int setSukunaFingers(int sf);
+	void setSukunaFingers(int sf);
 
 
 };

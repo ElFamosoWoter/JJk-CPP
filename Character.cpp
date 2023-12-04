@@ -5,7 +5,7 @@ int Character::getHp()
 	return hp;
 }
 
-int Character::setHp(int health)
+void Character::setHp(int health)
 {
 	if (health <= 0) std::cout << "Mort ou vie <= à 0" << std::endl;	
 	else hp = health;
@@ -17,7 +17,7 @@ int Character::getAttack()
 	return attack;
 }
 
-int Character::setAttach(int a)
+void Character::setAttach(int a)
 {
 	if (a < 0) std::cout << "attaque negative" << std::endl;
 	else attack = a;
@@ -31,12 +31,13 @@ EDomainExtention Character::getDomain()
 
 void Character::setDomaine(EDomainExtention e)
 {
-	return;
+	domain = e;
 }
 
 void Character::setDomaine(int index)
-{
-	return;
+{	
+	if (index < 0 && index>2) domain = EDomainExtention::None;
+	domain = static_cast<EDomainExtention>(index);
 }
 
 int Character::getOccultEnergy()
@@ -44,7 +45,7 @@ int Character::getOccultEnergy()
 	return occultEnergy;
 }
 
-int Character::setOccultEnergy(int oe)
+void Character::setOccultEnergy(int oe)
 {
 	if (oe < 0) std::cout << "Energie occulte negative" << std::endl;
 	else occultEnergy = oe;
@@ -55,7 +56,9 @@ int Character::getSukunaFingers()
 	return sukunaFingers;
 }
 
-int Character::setSukunaFingers(int sf)
-{
-	return 0;
+void Character::setSukunaFingers(int sf)
+{	
+	if (sf < 0) sukunaFingers = 0;
+	else sukunaFingers = sf;
+
 }
