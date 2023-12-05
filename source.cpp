@@ -59,7 +59,7 @@ bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
         return false; // Si les tailles sont différentes, les tableaux ne peuvent pas être égaux
     }
 
-    for (size_t i = 0; i < tableau1.size(); ++i) {
+    for (size_t i = 0; i < tableau1.size(); i++) {
         if (tableau1[i] != tableau2[i]) {
             return false; // Si un élément est différent, les tableaux ne sont pas égaux
         }
@@ -68,7 +68,16 @@ bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
     return true; // Si tous les éléments correspondent, les tableaux sont égaux
 }
 
-
+void afficherCombo(vector<vector<int>> comboList){
+    cout << endl;
+    for (size_t i = 0; i < comboList.size(); i++) {
+        for (size_t j = 0; j < comboList[i].size(); j++) {
+            cout << char(comboList[i][j]);
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
 
 int main() {
     //cout << char(30) << endl;
@@ -87,11 +96,11 @@ int main() {
     int tab2[5]{RIGHT,RIGHT,UP,UP,DOWN};
 
     vector<vector<int>> comboList = {
-        {DOWN, UP, RIGHT},//0
-        {UP, UP, UP},//1
-        {LEFT, UP, RIGHT}//2
+        {DOWN, UP, RIGHT},//combo 0
+        {UP, UP, UP, UP},//combo 1
+        {LEFT, UP, RIGHT}//combo 2
     };
-
+    afficherCombo(comboList);
     vector<int> tab1;
 
     int i = -1;
@@ -142,7 +151,7 @@ int main() {
             tab1.clear();
             if (boncombo) {
                 //touchez = 'q';
-                cout << "Vous attaquez avec le combo "<< indicetrouve << endl;
+                cout << "Vous attaquez avec le combo " << indicetrouve << endl;
             }
             else {
                 cout << "Mauvais combo" << endl;
