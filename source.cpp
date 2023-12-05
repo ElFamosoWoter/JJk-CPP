@@ -157,6 +157,9 @@ int main() {
                 cout << "Mauvais combo" << endl;
             }
         }
+        else if (touche == 48) {
+            afficherCombo(comboList);
+        }
     } while (touchez != 'q');
 
     return 0;
