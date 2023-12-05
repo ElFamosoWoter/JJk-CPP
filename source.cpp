@@ -54,6 +54,7 @@ void afficherimage(string image) {
     }
 }
 
+//Verifier si deux tableaux sont égaux
 bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
     if (tableau1.size() != tableau2.size()) {
         return false; // Si les tailles sont différentes, les tableaux ne peuvent pas être égaux
@@ -68,6 +69,7 @@ bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
     return true; // Si tous les éléments correspondent, les tableaux sont égaux
 }
 
+//Afficher la liste des combos possibles
 void afficherCombo(vector<vector<int>> comboList){
     cout << endl;
     for (size_t i = 0; i < comboList.size(); i++) {
@@ -77,6 +79,11 @@ void afficherCombo(vector<vector<int>> comboList){
         cout << endl;
     }
     cout << endl;
+}
+
+void modifcouleur() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
 }
 
 int main() {
@@ -158,6 +165,7 @@ int main() {
             }
         }
         else if (touche == 48) {
+            modifcouleur();
             afficherCombo(comboList);
         }
     } while (touchez != 'q');
