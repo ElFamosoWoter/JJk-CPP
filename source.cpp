@@ -140,6 +140,9 @@ int main() {
                 //touchez = 'q';
                 cout << "Vous attaquez" << endl;
             }
+            else {
+                cout << "Mauvais combo" << endl;
+            }
         }
     } while (touchez != 'q');
 
