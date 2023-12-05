@@ -86,8 +86,12 @@ int main() {
     int tab[3]{DOWN, LEFT, LEFT};
     int tab2[5]{RIGHT,RIGHT,UP,UP,DOWN};
 
-    vector<int> combo1 = { DOWN,LEFT,LEFT };
-    vector<int> combo2 = { RIGHT,RIGHT,UP,UP,DOWN };
+    vector<vector<int>> comboList = {
+        {DOWN, UP, RIGHT},//0
+        {UP, UP, UP},//1
+        {LEFT, UP, RIGHT}//2
+    };
+
     vector<int> tab1;
 
     int i = -1;
@@ -126,19 +130,19 @@ int main() {
             bool boncombo = false;
             i = -1;
             cout << endl;
-            if (sontEgaux(tab1, combo1)) {
-                cout << "Combo1" << endl;
-                boncombo = true;
-            }
-            if (sontEgaux(tab1, combo2)) {
-                cout << "Combo2" << endl;
-                boncombo = true;
+            int indicetrouve = -1;
+            for (size_t i = 0; i < comboList.size(); i++) {
+                if (sontEgaux(tab1, comboList[i])) {
+                    indicetrouve = static_cast<int>(i);
+                    boncombo = true;
+                    break;
+                }
             }
 
             tab1.clear();
             if (boncombo) {
                 //touchez = 'q';
-                cout << "Vous attaquez" << endl;
+                cout << "Vous attaquez avec le combo "<< indicetrouve << endl;
             }
             else {
                 cout << "Mauvais combo" << endl;
