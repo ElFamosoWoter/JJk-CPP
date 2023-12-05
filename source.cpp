@@ -6,7 +6,13 @@
 #include <thread>
 #include <chrono>
 #include <conio.h>
+#include <vector>
 #pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
+
+#define UP 30
+#define DOWN 31
+#define LEFT 17
+#define RIGHT 16
 
 using namespace std;
 
@@ -48,12 +54,20 @@ void afficherimage(string image) {
     }
 }
 
-//Clear un tableau
-void clearTableau(int tableau[], int taille) {
-    for (int i = 0; i < taille; ++i) {
-        tableau[i] = 0; // Assigner la valeur par défaut
+bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
+    if (tableau1.size() != tableau2.size()) {
+        return false; // Si les tailles sont différentes, les tableaux ne peuvent pas être égaux
     }
+
+    for (size_t i = 0; i < tableau1.size(); ++i) {
+        if (tableau1[i] != tableau2[i]) {
+            return false; // Si un élément est différent, les tableaux ne sont pas égaux
+        }
+    }
+
+    return true; // Si tous les éléments correspondent, les tableaux sont égaux
 }
+
 
 
 int main() {
@@ -68,8 +82,14 @@ int main() {
     //playmusic("imademo.wav");
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
-    int tab[3]{31, 17, 17};
-    int tab1[3]{};
+
+    int tab[3]{DOWN, LEFT, LEFT};
+    int tab2[5]{RIGHT,RIGHT,UP,UP,DOWN};
+
+    vector<int> combo1 = { DOWN,LEFT,LEFT };
+    vector<int> combo2 = { RIGHT,RIGHT,UP,UP,DOWN };
+    vector<int> tab1;
+
     int i = -1;
     do {
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
@@ -79,23 +99,23 @@ int main() {
             i++;
             switch (touche) {
             case 72:  // Flèche vers le haut
-                cout << char(30);
-                tab1[i] = 30;
+                cout << char(UP);
+                tab1.push_back(UP);
                 break;
 
             case 80:  // Flèche vers le bas
-                cout << char(31);
-                tab1[i] = 31;
+                cout << char(DOWN);
+                tab1.push_back(DOWN);
                 break;
 
             case 75:  // Flèche vers la gauche
-                cout << char(17);
-                tab1[i] = 17;
+                cout << char(LEFT);
+                tab1.push_back(LEFT);
                 break;
 
             case 77:  // Flèche vers la droite
-                cout << char(16);
-                tab1[i] = 16;
+                cout << char(RIGHT);
+                tab1.push_back(RIGHT);
                 break;
 
             default:
@@ -103,21 +123,22 @@ int main() {
             }
         }
         else if (touche == 13) { // Touche "Enter"
-            bool mauvaiscombo = false;
+            bool boncombo = false;
             i = -1;
-            std::cout << "Touche 'Enter' appuyee." << std::endl;
-            for (int j = 0; j < 3; j++) {
-                if (tab[j] == tab1[j]) {
-                    cout << endl;
-                    cout << "Bien" << tab[j] << " " << tab1[j] << endl;
-                }
-                else {
-                    mauvaiscombo = true;
-                }
+            cout << endl;
+            if (sontEgaux(tab1, combo1)) {
+                cout << "Combo1" << endl;
+                boncombo = true;
             }
-            clearTableau(tab1, 3);
-            if (!mauvaiscombo) {
-                touchez = 'q';
+            if (sontEgaux(tab1, combo2)) {
+                cout << "Combo2" << endl;
+                boncombo = true;
+            }
+
+            tab1.clear();
+            if (boncombo) {
+                //touchez = 'q';
+                cout << "Vous attaquez" << endl;
             }
         }
     } while (touchez != 'q');
