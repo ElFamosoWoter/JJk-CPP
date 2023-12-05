@@ -81,6 +81,7 @@ void afficherCombo(vector<vector<int>> comboList){
     cout << endl;
 }
 
+//Modifier la couleur en bleue, les seules disponibles sont RED,GREEN, BLUE, INTENSITY
 void modifcouleur() {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
@@ -99,9 +100,6 @@ int main() {
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
 
-    int tab[3]{DOWN, LEFT, LEFT};
-    int tab2[5]{RIGHT,RIGHT,UP,UP,DOWN};
-
     vector<vector<int>> comboList = {
         {DOWN, UP, RIGHT},//combo 0
         {UP, UP, UP, UP},//combo 1
@@ -110,13 +108,13 @@ int main() {
     afficherCombo(comboList);
     vector<int> tab1;
 
-    int i = -1;
+    int indice= -1;
     do {
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
 
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
             touche = _getch();  // Lire le code spécifique à la touche de direction
-            i++;
+            indice++;
             switch (touche) {
             case 72:  // Flèche vers le haut
                 cout << char(UP);
@@ -144,7 +142,7 @@ int main() {
         }
         else if (touche == 13) { // Touche "Enter"
             bool boncombo = false;
-            i = -1;
+            indice = -1;
             cout << endl;
             int indicetrouve = -1;
             for (size_t i = 0; i < comboList.size(); i++) {
@@ -167,6 +165,16 @@ int main() {
         else if (touche == 48) {
             modifcouleur();
             afficherCombo(comboList);
+        }
+        else if (touche == 8) {
+            if (!tab1.empty()) {
+                cout << endl;
+                tab1.pop_back();
+                for (int i = 0; i < tab1.size(); i++) {
+                    cout << char(tab1[i]);
+                }
+            }
+
         }
     } while (touchez != 'q');
 
