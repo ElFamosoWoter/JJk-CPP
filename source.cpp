@@ -7,6 +7,7 @@
 #include <chrono>
 #include <conio.h>
 #include <vector>
+#include "Character.h"
 #pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
 
 #define UP 30
@@ -100,11 +101,16 @@ int main() {
     //cout << char(17) << char(31) << char(16) << endl;
 
     // Votre code ici...
+     
+ 
+    //test crea de character
+    Character test1("Gojo",100,50,InfiniteVoid,500,20,true);
+
 
     //modifpolice(2, 6);
 
     afficherimage("imageAscii/logo.txt");
-    playmusic("special.wav");
+    //playmusic("special.wav");
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
 
