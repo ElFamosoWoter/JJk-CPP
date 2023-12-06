@@ -1,7 +1,12 @@
+#pragma once
 #include "Character.h"
 #include <iostream>
+#include <string>
 
-Character::Character(string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca)
+
+using namespace std;
+
+Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca)
 {
 	setName(na);
 	setHp(hp);
@@ -56,7 +61,7 @@ void Character::setDomain(EDomainExtension e)
 	domain = e;
 }
 
-void Character::setDomain(int index)
+void Character::setDomaine(int index)
 {	
 	if (index < 0 && index>2) domain = EDomainExtension::Pas;
 	domain = static_cast<EDomainExtension>(index);

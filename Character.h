@@ -1,6 +1,8 @@
 #pragma once
-#include "DomainExpension.h"
-#include "source.cpp" //temporaire
+#include <string>
+//#include "DomainExpansion.h"
+
+using namespace std;
 
 enum EDomainExtension
 {
@@ -48,7 +50,7 @@ public:
 
 	EDomainExtension getDomain();
 	void setDomain(EDomainExtension e);
-	void setDomain(int index);
+	void setDomaine(int index);
 
 	int getOccultEnergy();
 	void setOccultEnergy(int oe);

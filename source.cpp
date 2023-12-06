@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <Windows.h>
@@ -8,7 +10,8 @@
 #include <conio.h>
 #include <vector>
 #include "Character.h"
-#pragma comment(lib, "winmm.lib")  // Assurez-vous d'ajouter cette directive pour lier la bibliothèque winmm.lib
+
+#pragma comment(lib, "winmm.lib")
 
 #define UP 30
 #define DOWN 31
@@ -104,7 +107,7 @@ int main() {
      
  
     //test crea de character
-    Character test1("Gojo",100,50,InfiniteVoid,500,20,true);
+    Character test1("Gojo", 100, 50, EDomainExtension::InfiniteVoid, 500, 20, true);
 
 
     //modifpolice(2, 6);
