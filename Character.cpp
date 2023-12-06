@@ -100,7 +100,7 @@ void Character::setCanAttack(bool ca)
 	canAttack = ca;
 }
 
-void Character::PlayerAttack(Character target)
+void Character::PlayerAttack(Character& target)
 {
 	target.setHp(target.getHp() - getAttack());
 }

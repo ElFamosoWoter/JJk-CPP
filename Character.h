@@ -62,6 +62,6 @@ public:
 	void setCanAttack(bool ca);
 
 
-	void PlayerAttack(Character target);
+	void PlayerAttack(Character& target);
 
 };
