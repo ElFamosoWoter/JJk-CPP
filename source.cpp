@@ -13,6 +13,7 @@
 #define DOWN 31
 #define LEFT 17
 #define RIGHT 16
+#define ZEROTOUCH 48
 
 using namespace std;
 
@@ -22,7 +23,7 @@ void playmusic(const char* music){
     PlaySoundA(music, NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
     // Attendre que le son soit terminé
-    Sleep(90000);  // Vous pouvez ajuster cette valeur en fonction de la durée de votre son
+    //Sleep(90000);  // Vous pouvez ajuster cette valeur en fonction de la durée de votre son
 }
 
 //Modifier la police en fonction de la taille en x et en y
@@ -87,6 +88,13 @@ void modifcouleur() {
     SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
 }
 
+void afficherPlayerCombo(vector<int> tab) {
+    clearConsole();
+    for (size_t i = 0; i < tab.size(); i++) {
+        cout << char(tab[i]);
+    }
+}
+
 int main() {
     //cout << char(30) << endl;
     //cout << char(17) << char(31) << char(16) << endl;
@@ -95,8 +103,8 @@ int main() {
 
     //modifpolice(2, 6);
 
-    //afficherimage("imageAscii/logo.txt");
-    //playmusic("imademo.wav");
+    afficherimage("imageAscii/logo.txt");
+    playmusic("special.wav");
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
 
@@ -105,7 +113,7 @@ int main() {
         {UP, UP, UP, UP},//combo 1
         {LEFT, UP, RIGHT}//combo 2
     };
-    afficherCombo(comboList);
+    
     vector<int> tab1;
 
     int indice= -1;
@@ -117,28 +125,25 @@ int main() {
             indice++;
             switch (touche) {
             case 72:  // Flèche vers le haut
-                cout << char(UP);
                 tab1.push_back(UP);
                 break;
 
             case 80:  // Flèche vers le bas
-                cout << char(DOWN);
                 tab1.push_back(DOWN);
                 break;
 
             case 75:  // Flèche vers la gauche
-                cout << char(LEFT);
                 tab1.push_back(LEFT);
                 break;
 
             case 77:  // Flèche vers la droite
-                cout << char(RIGHT);
                 tab1.push_back(RIGHT);
                 break;
 
             default:
                 break;
             }
+            afficherPlayerCombo(tab1);
         }
         else if (touche == 13) { // Touche "Enter"
             bool boncombo = false;
@@ -155,24 +160,21 @@ int main() {
 
             tab1.clear();
             if (boncombo) {
-                //touchez = 'q';
                 cout << "Vous attaquez avec le combo " << indicetrouve << endl;
             }
             else {
                 cout << "Mauvais combo" << endl;
             }
         }
-        else if (touche == 48) {
-            modifcouleur();
+        else if (touche == ZEROTOUCH) {
+            //modifcouleur();
+            PlaySound(NULL, NULL, 0);
             afficherCombo(comboList);
         }
         else if (touche == 8) {
             if (!tab1.empty()) {
-                cout << endl;
                 tab1.pop_back();
-                for (int i = 0; i < tab1.size(); i++) {
-                    cout << char(tab1[i]);
-                }
+                afficherPlayerCombo(tab1);
             }
 
         }
