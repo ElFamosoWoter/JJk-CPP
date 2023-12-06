@@ -99,13 +99,13 @@ void afficherPlayerCombo(vector<int> tab) {
     }
 }
 
+//@Boucle de combat
 void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
 
     vector<int> tab1;
-
     int indice = -1;
 
-    while (player.getHp() > 0 || oponnent.getHp() > 0) {
+    while (player.getHp() > 0 && oponnent.getHp() > 0) {
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
 
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
@@ -133,6 +133,17 @@ void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
             }
             afficherPlayerCombo(tab1);
         }
+        else if (touche == ZEROTOUCH) {
+            //modifcouleur();
+            PlaySound(NULL, NULL, 0);
+            afficherCombo(comboList);
+        }
+        else if (touche == 8) {
+            if (!tab1.empty()) {
+                tab1.pop_back();
+                afficherPlayerCombo(tab1);
+            }
+        }
         else if (touche == 13) { // Touche "Enter"
             bool boncombo = false;
             indice = -1;
@@ -149,32 +160,25 @@ void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
             tab1.clear();
             if (boncombo) {
                 cout << "Vous attaquez avec le combo " << indicetrouve << endl;
-                cout << "Attack  " << player.getAttack() << endl;
                 player.PlayerAttack(oponnent);
-                cout << "Hp de go : " << oponnent.getHp() << endl;
+                cout << "Hp de "<<oponnent.getName() << " : " << oponnent.getHp() << endl;
             }
             else {
                 cout << "Mauvais combo" << endl;
             }
-        }
-        else if (touche == ZEROTOUCH) {
-            //modifcouleur();
-            PlaySound(NULL, NULL, 0);
-            afficherCombo(comboList);
-        }
-        else if (touche == 8) {
-            if (!tab1.empty()) {
-                tab1.pop_back();
-                afficherPlayerCombo(tab1);
-            }
-
+            cout << "Gojo vous attaque" << endl;
+            oponnent.PlayerAttack(player);
+            cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
         }
     }
 }
 
+
 int main() {
 
-    //Crea de character
+    //Creation
+    // 
+    //  de character
     Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true);
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
 
@@ -186,75 +190,19 @@ int main() {
     char touchez = _getch();
 
     vector<vector<int>> comboList = {
-        {DOWN, UP, RIGHT},//combo 0
-        {UP, UP, UP, UP},//combo 1
-        {LEFT, UP, RIGHT}//combo 2
+        {DOWN, UP, RIGHT, UP},//combo 0 Dissection
+        {UP, UP, UP, DOWN},//combo 1 Lacération
+        {LEFT, UP, RIGHT, DOWN, DOWN},//combo 2 Flèche de feu
+        {LEFT, LEFT, UP, RIGHT, LEFT, DOWN }, //combo 3 Sort d'inversion
+        {LEFT, LEFT, DOWN, UP, DOWN, UP},//combo 4 Extension du Territoire
+
+        {UP,DOWN,DOWN}, //combo 5 Normal 1
+        {LEFT,LEFT,UP}, //combo 6 Normal 2
+        {UP,UP,LEFT}, //combo 7 Normal 3
+        {DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
     combat(comboList, CharaSukuna, CharaGojo);
-
-    /*do {
-        int touche = _getch();  // Récupérer la valeur spécifique à la flèche
-
-        if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
-            touche = _getch();  // Lire le code spécifique à la touche de direction
-            indice++;
-            switch (touche) {
-            case 72:  // Flèche vers le haut
-                tab1.push_back(UP);
-                break;
-
-            case 80:  // Flèche vers le bas
-                tab1.push_back(DOWN);
-                break;
-
-            case 75:  // Flèche vers la gauche
-                tab1.push_back(LEFT);
-                break;
-
-            case 77:  // Flèche vers la droite
-                tab1.push_back(RIGHT);
-                break;
-
-            default:
-                break;
-            }
-            afficherPlayerCombo(tab1);
-        }
-        else if (touche == 13) { // Touche "Enter"
-            bool boncombo = false;
-            indice = -1;
-            cout << endl;
-            int indicetrouve = -1;
-            for (size_t i = 0; i < comboList.size(); i++) {
-                if (sontEgaux(tab1, comboList[i])) {
-                    indicetrouve = static_cast<int>(i);
-                    boncombo = true;
-                    break;
-                }
-            }
-
-            tab1.clear();
-            if (boncombo) {
-                cout << "Vous attaquez avec le combo " << indicetrouve << endl;
-            }
-            else {
-                cout << "Mauvais combo" << endl;
-            }
-        }
-        else if (touche == ZEROTOUCH) {
-            //modifcouleur();
-            PlaySound(NULL, NULL, 0);
-            afficherCombo(comboList);
-        }
-        else if (touche == 8) {
-            if (!tab1.empty()) {
-                tab1.pop_back();
-                afficherPlayerCombo(tab1);
-            }
-
-        }
-    } while (touchez != 'q');*/
 
     return 0;
 }
