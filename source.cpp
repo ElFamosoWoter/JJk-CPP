@@ -281,10 +281,13 @@ int main() {
         //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
-    Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true,comboListGojo);
-    Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true,comboListSukuna);
-    modifpolice(24, 32);
+    Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true, comboListGojo);
+    Character CharaJogo("Jogo", 100, 8, EDomainExtension::CoffinOfTheIronMontain, 500, 20, true, comboListJogo);
 
+    Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
+
+    vector<Character> Ennemies{ CharaGojo,CharaJogo };
+    modifpolice(24, 32);
     combat(CharaSukuna, CharaGojo);
 
     return 0;
