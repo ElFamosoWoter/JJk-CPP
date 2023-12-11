@@ -240,7 +240,9 @@ int main() {
 
     //Creation
     // 
-    //  de character
+    //de character
+
+
 
     vector<Combos*> comboListGojo = {
         new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
@@ -248,6 +250,10 @@ int main() {
         new Combos(generateRandomVector(5),"Red","imageAscii/Gojo/GojoPurple.txt","Sound/GojoRed",7000, 2,6,20,1.75),
         new Combos(generateRandomVector(5),"Violet","imageAscii/Gojo/GojoPurple.txt","Sound/GojoPurple",7000, 2,6,20,1.90),
         new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Gojo/GojoDomain.txt","Sound/DEGojo",8000, 6,18,20,3),
+    };
+
+    vector<Combos*> comboListJogo = {
+        new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
     };
 
     //modifpolice(2, 6);
