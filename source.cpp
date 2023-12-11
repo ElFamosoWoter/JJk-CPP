@@ -66,6 +66,7 @@ void afficherimage(string image) {
             cout << line << endl;
         }
     }
+    //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });
 }
 
 //Verifier si deux tableaux sont égaux
@@ -211,6 +212,7 @@ void combat(Character player, Character oponnent) {
             }
             cout << endl;
             cout << oponnent.getName() <<" vous attaque vous "<< oponnent.getCombosList()[nb]->getAttackName() << endl;
+            modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
             afficherimage(oponnent.getCombosList()[nb]->getImageLink());
             playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
             Sleep(oponnent.getCombosList()[nb]->getSoundTime());
@@ -230,7 +232,11 @@ int main() {
     //  de character
 
     vector<Combos*> comboListGojo = {
-        new Combos(generateRandomVector(3),"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),
+        new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Rayon noir","imageAscii/Gojo/GojoBase.txt","Sound/GojoBase",5000, 1,3,20,1.5),
+        new Combos(generateRandomVector(5),"Red","imageAscii/Gojo/GojoPurple.txt","Sound/GojoRed",7000, 2,6,20,1.75),
+        new Combos(generateRandomVector(5),"Violet","imageAscii/Gojo/GojoPurple.txt","Sound/GojoPurple",7000, 2,6,20,1.90),
+        new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Gojo/GojoDomain.txt","Sound/DEGojo",8000, 6,18,20,3),
     };
 
     //modifpolice(2, 6);
@@ -243,11 +249,11 @@ int main() {
 
     //map< vector<int>, Combos> combos;
     vector<Combos*> comboListSukuna = {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),  //combo 0 Dissection
-        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),//combo 1 Lacération
-        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6,20,1.5),//combo 2 Flèche de feu
-        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,1.5),//combo 4 Extension du Territoire
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.25),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.35),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6,20,1.75),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.90), //combo 3 Sort d'inversion
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
         //{LEFT,LEFT,UP}, //combo 6 Normal 2
