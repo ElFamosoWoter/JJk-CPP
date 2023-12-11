@@ -17,7 +17,6 @@ enum EDomainExtension
 class Character
 {
 private:
-	vector<vector<int>> combosList;
 	string name;
 	int hp;
 	int attack;
@@ -26,29 +25,24 @@ private:
 	int sukunaFingers;
 	bool canAttack;
 	//vector<Weapon> WeaponInventory;
-	vector<Combos*> comboListE;
+	vector<Combos*> comboList;
 
 
 public:
 	/*Constructeur d'un character*/
-	Character(string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca);
+	Character(string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe);
 
 
 
 	string getName();
 	void setName(string n);
 
-
-
-	/*
-	@return health
-	*/
+	//@return vie
 	int getHp();
 
-	/*		
-	@param health : set a new health
-	@return return new health
-	*/
+		
+	//@param health : set une nouvelle vie
+	//@return nouvelle vie
 	void setHp(int health);
 
 	int getAttack();
@@ -67,8 +61,13 @@ public:
 	bool getCanAttack();
 	void setCanAttack(bool ca);
 
-	vector<vector<int>> getCombosList();
-	void setCombosList(vector<vector<int>> listCombo);
+	vector<Combos*> getCombosList();
+	void setCombosList(vector<Combos*> listCombo);
+
+
+
+
+
 
 	void PlayerAttack(Character& target);
 

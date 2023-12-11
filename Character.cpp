@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca)
+Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*>)
 {
 	setName(na);
 	setHp(hp);
@@ -101,14 +101,14 @@ void Character::setCanAttack(bool ca)
 	canAttack = ca;
 }
 
-vector<vector<int>> Character::getCombosList()
+vector<Combos*> Character::getCombosList()
 {
-	return combosList;
+	return comboList;
 }
 
-void Character::setCombosList(vector<vector<int>> listCombo)
+void Character::setCombosList(vector<Combos*> listCombo)
 {
-
+	comboList = listCombo;
 }
 
 void Character::PlayerAttack(Character& target)
