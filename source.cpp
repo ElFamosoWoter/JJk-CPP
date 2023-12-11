@@ -12,6 +12,7 @@
 #include <map>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 #include "Character.h"
 #include "Combos.h"
 
@@ -108,13 +109,16 @@ void afficherPlayerCombo(vector<int> tab) {
     }
 }
 
-int generateRandomValue() {
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));// Initialisation de la graine pour rand() en utilisant le temps actuel
-    int possibleValues[] = { UP, DOWN, LEFT, RIGHT };// Tableau des valeurs possibles
-    int randomIndex = std::rand() % (sizeof(possibleValues) / sizeof(possibleValues[0]));// Génération d'un indice aléatoire pour accéder au tableau
-    int randomValue = possibleValues[randomIndex];// Récupération de la valeur associée à l'indice généré
+vector<int> generateRandomVector(int size) {
+    vector<int> possibleValues = { UP, DOWN, LEFT, RIGHT };// Vector des valeurs possibles
+    srand(static_cast<unsigned int>(std::time(nullptr)));// Initialisation de la graine pour rand() en utilisant le temps actuel
+    random_shuffle(possibleValues.begin(), possibleValues.end());// Mélange des valeurs du vecteur de manière aléatoire
+    vector<int> result(size);// Création d'un vecteur avec la taille spécifiée et remplissage avec les valeurs mélangées
+    for (int i = 0; i < size; ++i) {
+        result[i] = possibleValues[i % possibleValues.size()];
+    }
 
-    return randomValue;
+    return result;
 }
 
 //@Boucle de combat
@@ -190,7 +194,17 @@ void combat(Character player, Character oponnent) {
             else {
                 cout << "Mauvais combo" << endl;
             }
-            cout << oponnent.getName() <<" vous attaque" << endl;
+            for (size_t k = 0; k < oponnent.getCombosList()[0]->getCombo().size(); k++) {
+                cout << char(oponnent.getCombosList()[0]->getCombo()[k]);
+                Sleep(1000);
+            }
+            cout << endl;
+            cout << oponnent.getName() <<" vous attaque vous "<< oponnent.getCombosList()[0]->getAttackName() << endl;
+            afficherimage(oponnent.getCombosList()[0]->getImageLink());
+            playmusic(oponnent.getCombosList()[0]->getSoundLink(), false);
+            Sleep(oponnent.getCombosList()[0]->getSoundTime());
+            clearConsole();
+            modifpolice(24, 32);
             oponnent.PlayerAttack(player);
             cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
         }
@@ -205,7 +219,7 @@ int main() {
     //  de character
 
     vector<Combos*> comboListGojo = {
-        new Combos({generateRandomValue()},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),
+        new Combos(generateRandomVector(3),"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),
     };
 
     //modifpolice(2, 6);
