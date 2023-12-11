@@ -112,7 +112,7 @@ void Character::setCombosList(vector<Combos*> listCombo)
 	comboList = listCombo;
 }
 
-void Character::PlayerAttack(Character& target)
+void Character::PlayerAttack(Character& target, int index)
 {
-	target.setHp(target.getHp() - getAttack());
+	target.setHp(target.getHp() - (getAttack() * getCombosList()[index]->getBuffAtk()));
 }

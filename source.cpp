@@ -199,7 +199,7 @@ void combat(Character player, Character oponnent) {
                 Sleep(player.getCombosList()[indicetrouve]->getSoundTime());
                 clearConsole();
                 modifpolice(24,32);
-                player.PlayerAttack(oponnent);
+                player.PlayerAttack(oponnent, indicetrouve);
                 cout << "Hp de "<<oponnent.getName() << " : " << oponnent.getHp() << endl;
             }
             else {
@@ -218,7 +218,7 @@ void combat(Character player, Character oponnent) {
             Sleep(oponnent.getCombosList()[nb]->getSoundTime());
             clearConsole();
             modifpolice(24, 32);
-            oponnent.PlayerAttack(player);
+            oponnent.PlayerAttack(player, nb);
             cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
         }
     }

@@ -69,6 +69,6 @@ public:
 
 
 
-	void PlayerAttack(Character& target);
+	void PlayerAttack(Character& target, int index);
 
 };
