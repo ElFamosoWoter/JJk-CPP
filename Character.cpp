@@ -35,9 +35,8 @@ int Character::getHp()
 
 void Character::setHp(int health)
 {
-	//if (health <= 0) std::cout << "Mort ou vie <= à 0" << std::endl;	
-	//else 
-	hp = health;
+	if (health < 0) hp = 0;
+	else hp = health;
 		
 }
 
