@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <random>
 #include "Character.h"
 #include "Combos.h"
 
@@ -116,14 +117,14 @@ void afficherPlayerCombo(vector<int> tab) {
 
 //Les Randoms
 vector<int> generateRandomVector(int size) {
-    vector<int> possibleValues = { UP, DOWN, LEFT, RIGHT };// Vector des valeurs possibles
-    srand(static_cast<unsigned int>(std::time(nullptr)));// Initialisation de la graine pour rand() en utilisant le temps actuel
-    random_shuffle(possibleValues.begin(), possibleValues.end());// Mélange des valeurs du vecteur de manière aléatoire
-    vector<int> result(size);// Création d'un vecteur avec la taille spécifiée et remplissage avec les valeurs mélangées
-    for (int i = 0; i < size; ++i) {
+    static mt19937 rng(static_cast<unsigned int>(time(nullptr))); // Générateur statique
+    vector<int> possibleValues = { UP, DOWN, LEFT, RIGHT };
+    shuffle(possibleValues.begin(), possibleValues.end(), rng);// Mélange des valeurs du vecteur de manière aléatoire
+    vector<int> result(size);
+    
+    for (int i = 0; i < size; ++i) { // Remplissage avec les valeurs mélangées
         result[i] = possibleValues[i % possibleValues.size()];
     }
-
     return result;
 }
 int RNumber(int max) {
