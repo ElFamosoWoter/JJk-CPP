@@ -241,7 +241,7 @@ int main() {
 
     //modifpolice(2, 6);
     afficherimage("imageAscii/logo.txt");
-    playmusic("special.wav",true);
+    playmusic("Music/special.wav",true);
 
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
