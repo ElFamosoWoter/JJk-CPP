@@ -109,17 +109,10 @@ void afficherPlayerCombo(vector<int> tab) {
 }
 
 int generateRandomValue() {
-    // Initialisation de la graine pour rand() en utilisant le temps actuel
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
-    // Tableau des valeurs possibles
-    int possibleValues[] = { UP, DOWN, LEFT, RIGHT };
-
-    // Génération d'un indice aléatoire pour accéder au tableau
-    int randomIndex = std::rand() % (sizeof(possibleValues) / sizeof(possibleValues[0]));
-
-    // Récupération de la valeur associée à l'indice généré
-    int randomValue = possibleValues[randomIndex];
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));// Initialisation de la graine pour rand() en utilisant le temps actuel
+    int possibleValues[] = { UP, DOWN, LEFT, RIGHT };// Tableau des valeurs possibles
+    int randomIndex = std::rand() % (sizeof(possibleValues) / sizeof(possibleValues[0]));// Génération d'un indice aléatoire pour accéder au tableau
+    int randomValue = possibleValues[randomIndex];// Récupération de la valeur associée à l'indice généré
 
     return randomValue;
 }
@@ -210,14 +203,12 @@ int main() {
     //Creation
     // 
     //  de character
-    int randomDirection = generateRandomValue();
 
-    std::cout << "Direction aléatoire générée : " << char(randomDirection) << std::endl;
+    /*vector<Combos*> comboList = {
+        new Combos({generateRandomValue()},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),
+    };*/
 
-    vector<Combos*> comboList = {
-        new Combos({randomDirection},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),
-    };
-
+    cout << generateRandomValue() << endl;
 
     Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true);
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
