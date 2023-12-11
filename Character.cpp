@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*>)
+Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe)
 {
 	setName(na);
 	setHp(hp);
@@ -15,6 +15,7 @@ Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe
 	setOccultEnergy(oe);
 	setSukunaFingers(sf);
 	setCanAttack(ca);
+	setCombosList(ComboListe);
 }
 
 string Character::getName()

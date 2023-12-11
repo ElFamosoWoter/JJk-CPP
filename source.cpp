@@ -118,7 +118,7 @@ int generateRandomValue() {
 }
 
 //@Boucle de combat
-void combat(vector<Combos*>comboList,Character player, Character oponnent) {
+void combat(Character player, Character oponnent) {
 
     vector<int> tab1;
     int indice = -1;
@@ -154,7 +154,7 @@ void combat(vector<Combos*>comboList,Character player, Character oponnent) {
         else if (touche == ZEROTOUCH) {
             //modifcouleur();
             PlaySound(NULL, NULL, 0);
-            afficherCombo(comboList);
+            afficherCombo(player.getCombosList());
         }
         else if (touche == 8) { //touche "back space"
             if (!tab1.empty()) {
@@ -167,8 +167,8 @@ void combat(vector<Combos*>comboList,Character player, Character oponnent) {
             indice = -1;
             cout << endl;
             int indicetrouve = -1;
-            for (size_t i = 0; i < comboList.size(); i++) {
-                if (sontEgaux(tab1, comboList[i]->getCombo())) {
+            for (size_t i = 0; i < player.getCombosList().size(); i++) {
+                if (sontEgaux(tab1, player.getCombosList()[i]->getCombo())) {
                     indicetrouve = static_cast<int>(i);
                     boncombo = true;
                     break;
@@ -177,11 +177,11 @@ void combat(vector<Combos*>comboList,Character player, Character oponnent) {
 
             tab1.clear();
             if (boncombo) {
-                modifpolice(comboList[indicetrouve]->getFontSizeX(), comboList[indicetrouve]->getFontSizeY());
-                cout << "Vous attaquez avec le combo " << comboList[indicetrouve]->getAttackName() << endl;
-                afficherimage(comboList[indicetrouve]->getImageLink());
-                playmusic(comboList[indicetrouve]->getSoundLink(),false);
-                Sleep(comboList[indicetrouve]->getSoundTime());
+                modifpolice(player.getCombosList()[indicetrouve]->getFontSizeX(), player.getCombosList()[indicetrouve]->getFontSizeY());
+                cout << "Vous attaquez avec le combo " << player.getCombosList()[indicetrouve]->getAttackName() << endl;
+                afficherimage(player.getCombosList()[indicetrouve]->getImageLink());
+                playmusic(player.getCombosList()[indicetrouve]->getSoundLink(),false);
+                Sleep(player.getCombosList()[indicetrouve]->getSoundTime());
                 clearConsole();
                 modifpolice(24,32);
                 player.PlayerAttack(oponnent);
@@ -204,13 +204,9 @@ int main() {
     // 
     //  de character
 
-    /*vector<Combos*> comboList = {
-        new Combos({generateRandomValue()},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),
-    };*/
-
-    Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true);
-    Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
-    modifpolice(24, 32);
+    vector<Combos*> comboListGojo = {
+        new Combos({generateRandomValue()},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),
+    };
 
     //modifpolice(2, 6);
     //afficherimage("imageAscii/logo.txt");
@@ -221,7 +217,7 @@ int main() {
 
 
     //map< vector<int>, Combos> combos;
-    vector<Combos*> comboList = {
+    vector<Combos*> comboListSukuna = {
         new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),  //combo 0 Dissection
         new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),//combo 1 Lacération
         new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6,20,1.5),//combo 2 Flèche de feu
@@ -234,6 +230,11 @@ int main() {
         //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
-    combat(comboList, CharaSukuna, CharaGojo);
+    Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true,comboListGojo);
+    Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true,comboListSukuna);
+    modifpolice(24, 32);
+
+    combat(CharaSukuna, CharaGojo);
+
     return 0;
 }
