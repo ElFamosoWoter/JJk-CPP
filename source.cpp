@@ -90,7 +90,6 @@ bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
 
 //Afficher la liste des combos possibles
 void afficherCombo(vector<Combos*> comboList){
-    cout << endl;
     for (size_t i = 0; i < comboList.size(); i++) {
         cout << comboList[i]->getAttackName() << " ";
         for (size_t j = 0; j < comboList[i]->getCombo().size(); j++) {
@@ -109,6 +108,7 @@ void modifcouleur(WORD couleur) {
 
 void afficherPlayerCombo(vector<int> tab) {
     clearConsole();
+    cout << "Tour de Sukuna" << endl;
     for (size_t i = 0; i < tab.size(); i++) {
         cout << char(tab[i]);
     }
@@ -210,22 +210,24 @@ void combat(Character player, Character oponnent) {
             else {
                 cout << "Mauvais combo" << endl;
             }
-            int nb = RNumber(oponnent.getCombosList().size());
-            modifcouleur(BLUE);
-            for (size_t k = 0; k < oponnent.getCombosList()[nb]->getCombo().size(); k++) {
-                cout << char(oponnent.getCombosList()[nb]->getCombo()[k]);
-                Sleep(1000);
+            if (oponnent.getHp() > 0) {
+                int nb = RNumber(oponnent.getCombosList().size());
+                modifcouleur(BLUE);
+                for (size_t k = 0; k < oponnent.getCombosList()[nb]->getCombo().size(); k++) {
+                    cout << char(oponnent.getCombosList()[nb]->getCombo()[k]);
+                    Sleep(1000);
+                }
+                cout << endl;
+                cout << oponnent.getName() << " vous attaque vous " << oponnent.getCombosList()[nb]->getAttackName() << endl;
+                modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
+                afficherimage(oponnent.getCombosList()[nb]->getImageLink());
+                playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
+                Sleep(oponnent.getCombosList()[nb]->getSoundTime());
+                clearConsole();
+                modifpolice(24, 32);
+                oponnent.PlayerAttack(player, nb);
+                cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
             }
-            cout << endl;
-            cout << oponnent.getName() <<" vous attaque vous "<< oponnent.getCombosList()[nb]->getAttackName() << endl;
-            modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
-            afficherimage(oponnent.getCombosList()[nb]->getImageLink());
-            playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
-            Sleep(oponnent.getCombosList()[nb]->getSoundTime());
-            clearConsole();
-            modifpolice(24, 32);
-            oponnent.PlayerAttack(player, nb);
-            cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
         }
     }
 }
