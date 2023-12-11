@@ -24,9 +24,13 @@
 using namespace std;
 
 //Jouer une musique avec la music en param
-void playmusic(const char* music){
-    // Jouer le son
-    PlaySoundA(music, NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+void playmusic(const char* music,bool loop){
+    if (loop) {
+        PlaySoundA(music, NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+    }
+    else {
+        PlaySoundA(music, NULL, SND_FILENAME | SND_ASYNC);
+    }
 
     // Attendre que le son soit terminé
     //Sleep(90000);  // Vous pouvez ajuster cette valeur en fonction de la durée de votre son
@@ -162,9 +166,13 @@ void combat(vector<Combos*>comboList,Character player, Character oponnent) {
 
             tab1.clear();
             if (boncombo) {
+                modifpolice(comboList[indicetrouve]->getFontSizeX(), comboList[indicetrouve]->getFontSizeY());
                 cout << "Vous attaquez avec le combo " << comboList[indicetrouve]->getAttackName() << endl;
                 afficherimage(comboList[indicetrouve]->getImageLink());
-                playmusic(comboList[indicetrouve]->getSoundLink());
+                playmusic(comboList[indicetrouve]->getSoundLink(),false);
+                Sleep(comboList[indicetrouve]->getSoundTime());
+                clearConsole();
+                modifpolice(24,32);
                 player.PlayerAttack(oponnent);
                 cout << "Hp de "<<oponnent.getName() << " : " << oponnent.getHp() << endl;
             }
@@ -186,10 +194,11 @@ int main() {
     //  de character
     Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true);
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
+    modifpolice(24, 32);
 
     //modifpolice(2, 6);
     //afficherimage("imageAscii/logo.txt");
-    //playmusic("special.wav");
+    //playmusic("special.wav",true);
 
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
@@ -197,11 +206,11 @@ int main() {
 
     //map< vector<int>, Combos> combos;
     vector<Combos*> comboList = {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10),  //combo 0 Dissection
-        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10),//combo 1 Lacération
-        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10),//combo 2 Flèche de feu
-        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5),//combo 4 Extension du Territoire
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6), //combo 3 Sort d'inversion
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
         //{LEFT,LEFT,UP}, //combo 6 Normal 2
@@ -210,6 +219,5 @@ int main() {
     };
 
     combat(comboList, CharaSukuna, CharaGojo);
-    //cout << "size :" << comboList[0]->getCombo().size();
     return 0;
 }

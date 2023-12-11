@@ -1,6 +1,6 @@
 #include "Combos.h"
 #include <iostream>
-Combos::Combos(vector<int> combo, string attackName, string imageLink, string soundLink, int soundTime, int ImgX, int ImgY)
+Combos::Combos(vector<int> combo, string attackName, string imageLink, const char* soundLink, int soundTime, int ImgX, int ImgY)
 {
     setCombo(combo);
     setAttackName(attackName);
@@ -43,12 +43,12 @@ void Combos::setImageLink(string i)
     else imageLink = i;
 }
 
-string Combos::getSoundLink()
+const char* Combos::getSoundLink()
 {
     return soundLink;
 }
 
-void Combos::setSoundLink(string s)
+void Combos::setSoundLink(const char* s)
 {
     if (s == "") soundLink = "";
     else soundLink = s;
