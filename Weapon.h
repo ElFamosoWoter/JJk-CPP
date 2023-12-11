@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <string>
 #include <vector>
 #ifndef CHARACTER_H
@@ -43,3 +43,4 @@ public:
 };
 #endif // CHARACTER_H
 
+*/

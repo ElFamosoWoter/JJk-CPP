@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Combos.h"
 //#include "Weapon.h"
 //#include "DomainExpansion.h"
 
@@ -25,6 +26,7 @@ private:
 	int sukunaFingers;
 	bool canAttack;
 	//vector<Weapon> WeaponInventory;
+	vector<Combos*> comboListE;
 
 
 public:

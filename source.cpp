@@ -10,6 +10,8 @@
 #include <conio.h>
 #include <vector>
 #include <map>
+#include <cstdlib>
+#include <ctime>
 #include "Character.h"
 #include "Combos.h"
 
@@ -106,6 +108,22 @@ void afficherPlayerCombo(vector<int> tab) {
     }
 }
 
+int generateRandomValue() {
+    // Initialisation de la graine pour rand() en utilisant le temps actuel
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    // Tableau des valeurs possibles
+    int possibleValues[] = { UP, DOWN, LEFT, RIGHT };
+
+    // Génération d'un indice aléatoire pour accéder au tableau
+    int randomIndex = std::rand() % (sizeof(possibleValues) / sizeof(possibleValues[0]));
+
+    // Récupération de la valeur associée à l'indice généré
+    int randomValue = possibleValues[randomIndex];
+
+    return randomValue;
+}
+
 //@Boucle de combat
 void combat(vector<Combos*>comboList,Character player, Character oponnent) {
 
@@ -192,6 +210,15 @@ int main() {
     //Creation
     // 
     //  de character
+    int randomDirection = generateRandomValue();
+
+    std::cout << "Direction aléatoire générée : " << char(randomDirection) << std::endl;
+
+    vector<Combos*> comboList = {
+        new Combos({randomDirection},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),
+    };
+
+
     Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true);
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
     modifpolice(24, 32);
