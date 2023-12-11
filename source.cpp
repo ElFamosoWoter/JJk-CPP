@@ -109,6 +109,7 @@ void afficherPlayerCombo(vector<int> tab) {
     }
 }
 
+//Les Randoms
 vector<int> generateRandomVector(int size) {
     vector<int> possibleValues = { UP, DOWN, LEFT, RIGHT };// Vector des valeurs possibles
     srand(static_cast<unsigned int>(std::time(nullptr)));// Initialisation de la graine pour rand() en utilisant le temps actuel
@@ -119,6 +120,15 @@ vector<int> generateRandomVector(int size) {
     }
 
     return result;
+}
+int RNumber(int max) {
+    // Initialisation de la graine pour rand() en utilisant le temps actuel
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    // Génération d'un nombre aléatoire entre 0 et max (exclus)
+    int randomNumber = std::rand() % max;
+
+    return randomNumber;
 }
 
 //@Boucle de combat
@@ -194,15 +204,16 @@ void combat(Character player, Character oponnent) {
             else {
                 cout << "Mauvais combo" << endl;
             }
-            for (size_t k = 0; k < oponnent.getCombosList()[0]->getCombo().size(); k++) {
-                cout << char(oponnent.getCombosList()[0]->getCombo()[k]);
+            int nb = RNumber(oponnent.getCombosList().size());
+            for (size_t k = 0; k < oponnent.getCombosList()[nb]->getCombo().size(); k++) {
+                cout << char(oponnent.getCombosList()[nb]->getCombo()[k]);
                 Sleep(1000);
             }
             cout << endl;
-            cout << oponnent.getName() <<" vous attaque vous "<< oponnent.getCombosList()[0]->getAttackName() << endl;
-            afficherimage(oponnent.getCombosList()[0]->getImageLink());
-            playmusic(oponnent.getCombosList()[0]->getSoundLink(), false);
-            Sleep(oponnent.getCombosList()[0]->getSoundTime());
+            cout << oponnent.getName() <<" vous attaque vous "<< oponnent.getCombosList()[nb]->getAttackName() << endl;
+            afficherimage(oponnent.getCombosList()[nb]->getImageLink());
+            playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
+            Sleep(oponnent.getCombosList()[nb]->getSoundTime());
             clearConsole();
             modifpolice(24, 32);
             oponnent.PlayerAttack(player);
