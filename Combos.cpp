@@ -1,6 +1,6 @@
 #include "Combos.h"
 #include <iostream>
-Combos::Combos(vector<int> combo, string attackName, string imageLink, const char* soundLink, int soundTime, int ImgX, int ImgY)
+Combos::Combos(vector<int> combo, string attackName, string imageLink, const char* soundLink, int soundTime, int ImgX, int ImgY, int cost, float buffAtk)
 {
     setCombo(combo);
     setAttackName(attackName);
@@ -85,4 +85,26 @@ void Combos::setFontSizeY(int y)
 {
     if (y <= 0) fontSizeY = 1;
     else fontSizeY = y;
+}
+
+int Combos::getCost()
+{
+    return cost;
+}
+
+void Combos::setCost(int co)
+{
+    if (co < 0) cost = 0;
+    else cost = co;
+}
+
+float Combos::getBuffAtk()
+{
+    return buffAtk;
+}
+
+void Combos::setBuffAtk(float ba)
+{
+    if (ba <= 0) buffAtk = 1;
+    else buffAtk = ba;
 }
