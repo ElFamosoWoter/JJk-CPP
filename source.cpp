@@ -23,6 +23,10 @@
 #define LEFT 17
 #define RIGHT 16
 #define ZEROTOUCH 48
+#define BLUE FOREGROUND_BLUE
+#define RED FOREGROUND_RED
+//#define BLUE FOREGROUND_BLUE
+
 
 using namespace std;
 
@@ -98,9 +102,9 @@ void afficherCombo(vector<Combos*> comboList){
 }
 
 //Modifier la couleur en bleue, les seules disponibles sont RED,GREEN, BLUE, INTENSITY
-void modifcouleur() {
+void modifcouleur(WORD couleur) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE);
+    SetConsoleTextAttribute(hConsole, couleur);
 }
 
 void afficherPlayerCombo(vector<int> tab) {
@@ -140,6 +144,7 @@ void combat(Character player, Character oponnent) {
 
     while (player.getHp() > 0 && oponnent.getHp() > 0) {
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
+        modifcouleur(RED);
 
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
             touche = _getch();  // Lire le code spécifique à la touche de direction
@@ -206,6 +211,7 @@ void combat(Character player, Character oponnent) {
                 cout << "Mauvais combo" << endl;
             }
             int nb = RNumber(oponnent.getCombosList().size());
+            modifcouleur(BLUE);
             for (size_t k = 0; k < oponnent.getCombosList()[nb]->getCombo().size(); k++) {
                 cout << char(oponnent.getCombosList()[nb]->getCombo()[k]);
                 Sleep(1000);
