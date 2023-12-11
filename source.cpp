@@ -292,6 +292,7 @@ int main() {
    // while (Ennemies.empty()) {
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             combat(CharaSukuna, Ennemies[nbE]);
+            cout << "Bien jouer, maintenant place au prochain" << endl;
         }
     //}
 
