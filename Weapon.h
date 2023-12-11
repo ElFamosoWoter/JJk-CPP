@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include <string>
 #include <vector>
 #ifndef CHARACTER_H
@@ -19,10 +19,10 @@ public:
     string name;
     int BoostValue;
     StatsToBoost BoostStats;
-    Character* PersonnageToUp;
+    Character& PersonnageToUp;
 
 
-    Weapon(std::string Na, int Bv, StatsToBoost SB, const Character& PU);
+    Weapon(std::string Na, int Bv, StatsToBoost SB, Character& PU);
 
     string GetIName();
     void SetIName(string N);
@@ -34,7 +34,7 @@ public:
     void SetBoostValue(int BV);
 
     Character GetPersonnageToUp();
-    void SetPersonnageToUp(Character PU);
+    void SetPersonnageToUp(Character& PU);
 
     void SetCharacterValue(Character& character);
 
@@ -43,4 +43,3 @@ public:
 };
 #endif // CHARACTER_H
 
-*/

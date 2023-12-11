@@ -1,12 +1,15 @@
-/*#include "Weapon.h"
+#include "Weapon.h"
 #include "Character.h"
 using namespace std;
-Weapon::Weapon(string Na, int Bv, StatsToBoost SB, const Character& PU)
+
+Weapon::Weapon(string Na, int Bv, StatsToBoost SB, Character& PU)
+    : name(Na), BoostStats(SB), BoostValue(Bv), PersonnageToUp(PU)
 {
-    name = Na;
-    BoostStats = SB;
-    BoostValue = Bv;
-    PersonnageToUp = &PU;  // Initialisez PersonnageToUp avec la valeur fournie
+    SetIName(Na);
+    SetBoostStats(SB);
+    SetBoostValue(Bv);
+    SetCharacterValue(PU);
+   
 }
 string Weapon::GetIName()
 {
@@ -43,7 +46,7 @@ Character Weapon::GetPersonnageToUp()
     return PersonnageToUp;
 }
 
-void Weapon::SetPersonnageToUp(Character PU)
+void Weapon::SetPersonnageToUp(Character& PU)
 {
     PersonnageToUp = PU;
 }
@@ -65,4 +68,3 @@ void Weapon::SetCharacterValue(Character& character)
         break;
     }
 }
-*/
