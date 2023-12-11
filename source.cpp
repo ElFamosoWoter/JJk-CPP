@@ -77,13 +77,14 @@ bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
 }
 
 //Afficher la liste des combos possibles
-void afficherCombo(vector<vector<int>> comboList){
+void afficherCombo(vector<Combos*> comboList){
     cout << endl;
     for (size_t i = 0; i < comboList.size(); i++) {
-        for (size_t j = 0; j < comboList[i].size(); j++) {
-            cout << char(comboList[i][j]);
+        cout << comboList[i]->getAttackName() << " ";
+        for (size_t j = 0; j < comboList[i]->getCombo().size(); j++) {
+            cout << char(comboList[i]->getCombo()[j]);
         }
-        cout << endl;
+        cout<< endl;
     }
     cout << endl;
 }
@@ -102,7 +103,7 @@ void afficherPlayerCombo(vector<int> tab) {
 }
 
 //@Boucle de combat
-void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
+void combat(vector<Combos*>comboList,Character player, Character oponnent) {
 
     vector<int> tab1;
     int indice = -1;
@@ -152,7 +153,7 @@ void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
             cout << endl;
             int indicetrouve = -1;
             for (size_t i = 0; i < comboList.size(); i++) {
-                if (sontEgaux(tab1, comboList[i])) {
+                if (sontEgaux(tab1, comboList[i]->getCombo())) {
                     indicetrouve = static_cast<int>(i);
                     boncombo = true;
                     break;
@@ -161,7 +162,7 @@ void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
 
             tab1.clear();
             if (boncombo) {
-                cout << "Vous attaquez avec le combo " << indicetrouve << endl;
+                cout << "Vous attaquez avec le combo " << comboList[indicetrouve]->getAttackName() << endl;
                 player.PlayerAttack(oponnent);
                 cout << "Hp de "<<oponnent.getName() << " : " << oponnent.getHp() << endl;
             }
@@ -185,31 +186,28 @@ int main() {
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
 
     //modifpolice(2, 6);
-    afficherimage("imageAscii/logo.txt");
+    //afficherimage("imageAscii/logo.txt");
     //playmusic("special.wav");
 
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
 
-    Combos Test("test");
-    map< vector<int>, Combos> combos;
-    combos[{DOWN, UP, RIGHT, UP}] = Test;
 
+    //map< vector<int>, Combos> combos;
+    vector<Combos*> comboList = {
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","testSon",10),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","testSon",10),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaBase.txt","testSon",10),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","testSon",10), //combo 3 Sort d'inversion
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaBase.txt","testSon",10),//combo 4 Extension du Territoire
 
-    vector<vector<int>> comboList = {
-        {DOWN, UP, RIGHT, UP},//combo 0 Dissection
-        {UP, UP, UP, DOWN},//combo 1 Lacération
-        {LEFT, UP, RIGHT, DOWN, DOWN},//combo 2 Flèche de feu
-        {LEFT, LEFT, UP, RIGHT, LEFT, DOWN }, //combo 3 Sort d'inversion
-        {LEFT, LEFT, DOWN, UP, DOWN, UP},//combo 4 Extension du Territoire
-
-        {UP,DOWN,DOWN}, //combo 5 Normal 1
-        {LEFT,LEFT,UP}, //combo 6 Normal 2
-        {UP,UP,LEFT}, //combo 7 Normal 3
-        {DOWN,DOWN,RIGHT} //combo 8 Normal 4
+        //{UP,DOWN,DOWN}, //combo 5 Normal 1
+        //{LEFT,LEFT,UP}, //combo 6 Normal 2
+        //{UP,UP,LEFT}, //combo 7 Normal 3
+        //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
     combat(comboList, CharaSukuna, CharaGojo);
-
+    //cout << "size :" << comboList[0]->getCombo().size();
     return 0;
 }
