@@ -101,6 +101,16 @@ void Character::setCanAttack(bool ca)
 	canAttack = ca;
 }
 
+vector<vector<int>> Character::getCombosList()
+{
+	return combosList;
+}
+
+void Character::setCombosList(vector<vector<int>> listCombo)
+{
+
+}
+
 void Character::PlayerAttack(Character& target)
 {
 	target.setHp(target.getHp() - getAttack());

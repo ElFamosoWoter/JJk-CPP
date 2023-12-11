@@ -9,7 +9,9 @@
 #include <chrono>
 #include <conio.h>
 #include <vector>
+#include <map>
 #include "Character.h"
+#include "Combos.h"
 
 #pragma comment(lib, "winmm.lib")
 
@@ -138,7 +140,7 @@ void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
             PlaySound(NULL, NULL, 0);
             afficherCombo(comboList);
         }
-        else if (touche == 8) {
+        else if (touche == 8) { //touche "back space"
             if (!tab1.empty()) {
                 tab1.pop_back();
                 afficherPlayerCombo(tab1);
@@ -166,7 +168,7 @@ void combat(vector<vector<int>>comboList,Character player, Character oponnent) {
             else {
                 cout << "Mauvais combo" << endl;
             }
-            cout << "Gojo vous attaque" << endl;
+            cout << oponnent.getName() <<" vous attaque" << endl;
             oponnent.PlayerAttack(player);
             cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
         }
@@ -183,11 +185,16 @@ int main() {
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
 
     //modifpolice(2, 6);
-
-    //afficherimage("imageAscii/logo.txt");
+    afficherimage("imageAscii/logo.txt");
     //playmusic("special.wav");
+
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
+
+    Combos Test("test");
+    map< vector<int>, Combos> combos;
+    combos[{DOWN, UP, RIGHT, UP}] = Test;
+
 
     vector<vector<int>> comboList = {
         {DOWN, UP, RIGHT, UP},//combo 0 Dissection

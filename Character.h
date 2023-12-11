@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 //#include "DomainExpansion.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ enum EDomainExtension
 class Character
 {
 private:
+	vector<vector<int>> combosList;
 	string name;
 	int hp;
 	int attack;
@@ -61,6 +63,8 @@ public:
 	bool getCanAttack();
 	void setCanAttack(bool ca);
 
+	vector<vector<int>> getCombosList();
+	void setCombosList(vector<vector<int>> listCombo);
 
 	void PlayerAttack(Character& target);
 
