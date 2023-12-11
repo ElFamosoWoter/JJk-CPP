@@ -253,7 +253,10 @@ int main() {
     };
 
     vector<Combos*> comboListJogo = {
-        new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Poing de feu","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Boule de feu","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.30),
+        new Combos(generateRandomVector(3),"Meteorite","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.80),
+        new Combos(generateRandomVector(3),"Extension du territoire","imageAscii/Jogo/JogoDomain.txt","Sound/DEJogo",5000, 4,12,20,2.75),
     };
 
     //modifpolice(2, 6);
