@@ -1,4 +1,4 @@
-#include "Weapon.h"
+/*#include "Weapon.h"
 #include "Character.h"
 using namespace std;
 Weapon::Weapon(string Na, int Bv, StatsToBoost SB, const Character& PU)
@@ -65,3 +65,4 @@ void Weapon::SetCharacterValue(Character& character)
         break;
     }
 }
+*/

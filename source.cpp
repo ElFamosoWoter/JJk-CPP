@@ -199,7 +199,7 @@ int main() {
         new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","testSon",10),//combo 1 Lacération
         new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaBase.txt","testSon",10),//combo 2 Flèche de feu
         new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","testSon",10), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaBase.txt","testSon",10),//combo 4 Extension du Territoire
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sond/DESukuna",5),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
         //{LEFT,LEFT,UP}, //combo 6 Normal 2

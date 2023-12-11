@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Weapon.h"
+//#include "Weapon.h"
 //#include "DomainExpansion.h"
 
 using namespace std;
@@ -24,7 +24,7 @@ private:
 	int occultEnergy;
 	int sukunaFingers;
 	bool canAttack;
-	vector<Weapon> WeaponInventory;
+	//vector<Weapon> WeaponInventory;
 
 
 public:
