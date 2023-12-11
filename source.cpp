@@ -240,8 +240,8 @@ int main() {
     };
 
     //modifpolice(2, 6);
-    //afficherimage("imageAscii/logo.txt");
-    //playmusic("special.wav",true);
+    afficherimage("imageAscii/logo.txt");
+    playmusic("special.wav",true);
 
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
