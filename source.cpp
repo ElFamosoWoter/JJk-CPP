@@ -214,7 +214,7 @@ void combat(Character player, Character oponnent) {
             if (oponnent.getHp() > 0) {
                 int nb = RNumber(oponnent.getCombosList().size());
                 modifcouleur(BLUE);
-                cout<< "Tour de Gojo" << endl;
+                cout<< "Tour de "<< oponnent.getName() << endl;
                 for (size_t k = 0; k < oponnent.getCombosList()[nb]->getCombo().size(); k++) {
                     cout << char(oponnent.getCombosList()[nb]->getCombo()[k]);
                     Sleep(1000);
@@ -255,7 +255,7 @@ int main() {
     vector<Combos*> comboListJogo = {
         new Combos(generateRandomVector(3),"Poing de feu","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.20),
         new Combos(generateRandomVector(3),"Boule de feu","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.30),
-        new Combos(generateRandomVector(3),"Meteorite","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.80),
+        new Combos(generateRandomVector(3),"Meteorite","imageAscii/Jogo/JogoMeteorite.txt","Sound/",5000, 4,12,20,1.80),
         new Combos(generateRandomVector(3),"Extension du territoire","imageAscii/Jogo/JogoDomain.txt","Sound/DEJogo",5000, 4,12,20,2.75),
     };
 
@@ -286,9 +286,16 @@ int main() {
 
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{ CharaGojo,CharaJogo };
+    vector<Character> Ennemies{CharaJogo,CharaGojo};
     modifpolice(24, 32);
-    combat(CharaSukuna, CharaGojo);
+
+   // while (Ennemies.empty()) {
+        for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
+            combat(CharaSukuna, Ennemies[nbE]);
+        }
+    //}
+
+    //combat(CharaSukuna, CharaGojo);
 
     return 0;
 }
