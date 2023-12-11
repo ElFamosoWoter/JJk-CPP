@@ -13,13 +13,17 @@ private:
 	string imageLink;
 	string soundLink;
 	int soundTime;
+	int fontSizeX;
+	int fontSizeY;
+
+
 
 
 
 public:
 
 	// Combo, attackName, imageLink, soundLink, soundTime
-	Combos(vector<int> comboAttack, string attackName, string imageLink, string soundLink, int soundTime);
+	Combos(vector<int> comboAttack, string attackName, string imageLink, string soundLink, int soundTime, int ImgX, int ImgY);
 
 	vector<int> getCombo();
 	void setCombo(vector<int> c);
@@ -35,5 +39,13 @@ public:
 
 	int getSoundTime();
 	void setSoundTime(int t);
+
+	int getFontSizeX();
+	void setFontSizeX(int x);
+
+	int getFontSizeY();
+	void setFontSizeY(int y);
+
+
 };
 

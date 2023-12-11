@@ -1,12 +1,14 @@
 #include "Combos.h"
 #include <iostream>
-Combos::Combos(vector<int> combo, string attackName, string imageLink, string soundLink, int soundTime)
+Combos::Combos(vector<int> combo, string attackName, string imageLink, string soundLink, int soundTime, int ImgX, int ImgY)
 {
     setCombo(combo);
     setAttackName(attackName);
     setImageLink(imageLink);
     setSoundLink(soundLink);
     setSoundTime(soundTime);
+    setFontSizeX(ImgX);
+    setFontSizeY(ImgY);
 }
 
 vector<int> Combos::getCombo()
@@ -61,4 +63,26 @@ void Combos::setSoundTime(int t)
 {
     if (t < 0) soundTime = 1;
     else soundTime = t;
+}
+
+int Combos::getFontSizeX()
+{
+    return fontSizeX;
+}
+
+void Combos::setFontSizeX(int x)
+{
+    if (x <= 0) fontSizeX = 1;
+    else fontSizeX = x;
+}
+
+int Combos::getFontSizeY()
+{
+    return fontSizeY;
+}
+
+void Combos::setFontSizeY(int y)
+{
+    if (y <= 0) fontSizeY = 1;
+    else fontSizeY = y;
 }
