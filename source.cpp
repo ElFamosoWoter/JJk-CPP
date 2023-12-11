@@ -208,8 +208,6 @@ int main() {
         new Combos({generateRandomValue()},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),
     };*/
 
-    cout << generateRandomValue() << endl;
-
     Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true);
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true);
     modifpolice(24, 32);
@@ -224,11 +222,11 @@ int main() {
 
     //map< vector<int>, Combos> combos;
     vector<Combos*> comboList = {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),  //combo 0 Dissection
-        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6),//combo 1 Lacération
-        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6),//combo 2 Flèche de feu
-        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6),//combo 4 Extension du Territoire
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6,20,1.5),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.5), //combo 3 Sort d'inversion
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,1.5),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
         //{LEFT,LEFT,UP}, //combo 6 Normal 2
