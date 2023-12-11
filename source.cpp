@@ -138,13 +138,12 @@ int RNumber(int max) {
 
 //@Boucle de combat
 void combat(Character player, Character oponnent) {
-
+    modifcouleur(RED);
     vector<int> tab1;
     int indice = -1;
 
     while (player.getHp() > 0 && oponnent.getHp() > 0) {
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
-        modifcouleur(RED);
 
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
             touche = _getch();  // Lire le code spécifique à la touche de direction
@@ -205,6 +204,7 @@ void combat(Character player, Character oponnent) {
                 clearConsole();
                 modifpolice(24,32);
                 player.PlayerAttack(oponnent, indicetrouve);
+                modifcouleur(BLUE);
                 cout << "Hp de "<<oponnent.getName() << " : " << oponnent.getHp() << endl;
             }
             else {
@@ -213,6 +213,7 @@ void combat(Character player, Character oponnent) {
             if (oponnent.getHp() > 0) {
                 int nb = RNumber(oponnent.getCombosList().size());
                 modifcouleur(BLUE);
+                cout<< "Tour de Gojo" << endl;
                 for (size_t k = 0; k < oponnent.getCombosList()[nb]->getCombo().size(); k++) {
                     cout << char(oponnent.getCombosList()[nb]->getCombo()[k]);
                     Sleep(1000);
@@ -226,6 +227,7 @@ void combat(Character player, Character oponnent) {
                 clearConsole();
                 modifpolice(24, 32);
                 oponnent.PlayerAttack(player, nb);
+                modifcouleur(RED);
                 cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
             }
         }
