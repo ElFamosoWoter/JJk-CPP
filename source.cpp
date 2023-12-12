@@ -253,10 +253,23 @@ int main() {
     };
 
     vector<Combos*> comboListJogo = {
-        new Combos(generateRandomVector(3),"Poing de feu","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Boule de feu","imageAscii/Jogo/JogoBase.txt","Sound/",5000, 4,12,20,1.30),
-        new Combos(generateRandomVector(3),"Meteorite","imageAscii/Jogo/JogoMeteorite.txt","Sound/",5000, 4,12,20,1.80),
+        new Combos(generateRandomVector(3),"Poing de feu","imageAscii/Jogo/JogoBase.txt","Sound/JogoBase",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Boule de feu","imageAscii/Jogo/JogoBase.txt","Sound/JogoBase",5000, 4,12,20,1.30),
+        new Combos(generateRandomVector(3),"Meteorite","imageAscii/Jogo/JogoMeteorite.txt","Sound/JogoMeteorite",5000, 4,12,20,1.80),
         new Combos(generateRandomVector(3),"Extension du territoire","imageAscii/Jogo/JogoDomain.txt","Sound/DEJogo",5000, 4,12,20,2.75),
+    };
+    vector<Combos*> comboListNobara = {
+        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
+    };
+    vector<Combos*> comboListToji = {
+        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
+    };
+
+        vector<Combos*> comboListMahito = {
+        new Combos(generateRandomVector(3),"Extension du territoire","imageAscii/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
     };
 
     //modifpolice(2, 6);
@@ -269,10 +282,10 @@ int main() {
 
     //map< vector<int>, Combos> combos;
     vector<Combos*> comboListSukuna = {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.25),  //combo 0 Dissection
-        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.35),//combo 1 Lacération
-        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",10000, 2,6,20,1.75),//combo 2 Flèche de feu
-        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",10000, 2,6,20,1.90), //combo 3 Sort d'inversion
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",5000, 2,6,20,1.25),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",5000, 2,6,20,1.35),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",5000, 2,6,20,1.90), //combo 3 Sort d'inversion
         new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
@@ -283,10 +296,13 @@ int main() {
 
     Character CharaGojo("Gojo", 100, 8, EDomainExtension::InfiniteVoid, 500, 20, true, comboListGojo);
     Character CharaJogo("Jogo", 100, 8, EDomainExtension::CoffinOfTheIronMontain, 500, 20, true, comboListJogo);
+    Character CharaNobara("Nobara", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
+    Character CharaToji("Toji", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
+    Character CharaMahito("Mahito", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListMahito);
 
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaJogo,CharaGojo};
+    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaGojo};
     modifpolice(24, 32);
 
    // while (Ennemies.empty()) {

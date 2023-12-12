@@ -12,6 +12,7 @@ enum EDomainExtension
 	Pas,
 	InfiniteVoid,
 	CoffinOfTheIronMontain,
+	Orbe,
 };	
 
 class Character
