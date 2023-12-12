@@ -10,9 +10,9 @@ using namespace std;
 enum EDomainExtension
 {
 	Pas,
-	InfiniteVoid,
-	CoffinOfTheIronMontain,
-	Orbe,
+	Infinite_Void,
+	Coffin_Of_The_Iron_Montain,
+	Orbe_isolement,
 };	
 
 class Character
