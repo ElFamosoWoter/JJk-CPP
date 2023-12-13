@@ -259,17 +259,22 @@ int main() {
         new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Jogo/JogoDomain.txt","Sound/DEJogo",5000, 4,12,20,2.75),
     };
     vector<Combos*> comboListNobara = {
-        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/GojoBase",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Jette des clous","imageAscii/Nobara/NobaraBase.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(5),"Epingle a cheveveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NoabraAttack",5000, 4,12,20,1.20),
     };
     vector<Combos*> comboListToji = {
-        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/.txt","Sound/",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 4,12,20,1.20),
     };
 
         vector<Combos*> comboListMahito = {
-        new Combos(generateRandomVector(3),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Coup de clones","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
     };
 
     //modifpolice(2, 6);
@@ -302,7 +307,7 @@ int main() {
 
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaGojo};
+    vector<Character> Ennemies{CharaToji,CharaMahito,CharaJogo,CharaGojo};
     modifpolice(24, 32);
 
    // while (Ennemies.empty()) {
