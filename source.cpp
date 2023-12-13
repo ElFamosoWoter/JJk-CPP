@@ -110,6 +110,7 @@ void modifcouleur(WORD couleur) {
 
 void afficherPlayerCombo(vector<int> tab, Character playerRef) {
     clearConsole();
+    modifpolice(24, 32);
     cout << "Tour de Sukuna :"<< endl;
     cout << "Energie Occulte : " << playerRef.getOccultEnergy() << endl;
     cout << "Combos : ";
@@ -142,6 +143,11 @@ int RNumber(int max) {
 
 //@Boucle de combat
 void combat(Character player, Character oponnent) {
+    clearConsole();
+    modifpolice(4,12);
+    afficherimage("imageAscii/Nobara/SvsNobara.txt");
+    Sleep(3000);
+    
     modifcouleur(RED);
     vector<int> tab1;
     int indice = -1;
