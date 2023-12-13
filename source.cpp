@@ -110,6 +110,7 @@ void modifcouleur(WORD couleur) {
 void afficherPlayerCombo(vector<int> tab) {
     clearConsole();
     cout << "Tour de Sukuna" << endl;
+    cout << "Combos : ";
     for (size_t i = 0; i < tab.size(); i++) {
         cout << char(tab[i]);
     }
@@ -307,13 +308,15 @@ int main() {
 
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaToji,CharaMahito,CharaJogo,CharaGojo};
+    vector<Character> Ennemies{CharaNobara}; //,CharaToji,CharaMahito,CharaJogo,CharaGojo
     modifpolice(24, 32);
 
    // while (Ennemies.empty()) {
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             combat(CharaSukuna, Ennemies[nbE]);
-            cout << "Bien jouer, maintenant place au prochain" << endl;
+            if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
+            else cout << "Vous avez terminer GG my brother !" << endl;
+            
         }
     //}
 
