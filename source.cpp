@@ -91,12 +91,13 @@ bool sontEgaux(const vector<int>& tableau1, const vector<int>& tableau2) {
 
 //Afficher la liste des combos possibles
 void afficherCombo(vector<Combos*> comboList){
+    cout << endl;
     for (size_t i = 0; i < comboList.size(); i++) {
         cout << comboList[i]->getAttackName() << " ";
         for (size_t j = 0; j < comboList[i]->getCombo().size(); j++) {
             cout << char(comboList[i]->getCombo()[j]);
         }
-        cout<< endl;
+        cout << " Cout : " << comboList[i]->getCost() << endl;
     }
     cout << endl;
 }
@@ -254,15 +255,15 @@ int main() {
     };
 
     vector<Combos*> comboListJogo = {
-        new Combos(generateRandomVector(3),"Poing de feu","imageAscii/Jogo/JogoBase.txt","Sound/JogoBase",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(4),"Boule de feu","imageAscii/Jogo/JogoBase.txt","Sound/JogoBase",5000, 4,12,20,1.30),
+        new Combos(generateRandomVector(3),"Poing de feu","imageAscii/Jogo/JogoBase.txt","Sound/JogoBase",5000, 2,6,20,1.20),
+        new Combos(generateRandomVector(4),"Boule de feu","imageAscii/Jogo/JogoBase.txt","Sound/JogoBase",5000, 2,6,20,1.30),
         new Combos(generateRandomVector(5),"Meteorite","imageAscii/Jogo/JogoMeteorite.txt","Sound/JogoMeteorite",5000, 4,12,20,1.80),
         new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Jogo/JogoDomain.txt","Sound/DEJogo",5000, 4,12,20,2.75),
     };
     vector<Combos*> comboListNobara = {
-        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Jette des clous","imageAscii/Nobara/NobaraBase.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(5),"Epingle a cheveveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NoabraAttack",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/",5000, 2,6,20,1.20),
+        new Combos(generateRandomVector(5),"Resonance","imageAscii/Nobara/NobaraBase.txt","Sound/NobaraResonance",5000, 2,6,20,1.20),
+        new Combos(generateRandomVector(5),"Epingle a cheveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NobaraAttack",6000, 2,6,20,1.90),
     };
     vector<Combos*> comboListToji = {
         new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 4,12,20,1.20),
@@ -273,8 +274,8 @@ int main() {
     };
 
         vector<Combos*> comboListMahito = {
-        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Coup de clones","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitBlackFlash",7000, 4,12,20,1.20),
         new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
     };
 
@@ -308,14 +309,14 @@ int main() {
 
     Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaNobara}; //,CharaToji,CharaMahito,CharaJogo,CharaGojo
+    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaGojo };
     modifpolice(24, 32);
 
    // while (Ennemies.empty()) {
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             combat(CharaSukuna, Ennemies[nbE]);
             if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
-            else cout << "Vous avez terminer GG my brother !" << endl;
+            else cout << "Vous avez termine GG my brother !" << endl;
             
         }
     //}
