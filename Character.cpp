@@ -113,5 +113,9 @@ void Character::setCombosList(vector<Combos*> listCombo)
 
 void Character::PlayerAttack(Character& target, int index)
 {
-	target.setHp(target.getHp() - (getAttack() * getCombosList()[index]->getBuffAtk()));
+	if (getOccultEnergy() > getCombosList()[index]->getCost()) {
+		cout << "oui" << endl;
+		setOccultEnergy(getOccultEnergy() - getCombosList()[index]->getCost());
+		target.setHp(target.getHp() - (getAttack() * getCombosList()[index]->getBuffAtk()));
+	}
 }

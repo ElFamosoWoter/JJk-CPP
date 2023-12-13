@@ -9,6 +9,7 @@ Combos::Combos(vector<int> combo, string attackName, string imageLink, const cha
     setSoundTime(soundTime);
     setFontSizeX(ImgX);
     setFontSizeY(ImgY);
+    setCost(cost);
     setBuffAtk(buffAtk);
 }
 
