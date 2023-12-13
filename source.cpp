@@ -108,9 +108,10 @@ void modifcouleur(WORD couleur) {
     SetConsoleTextAttribute(hConsole, couleur);
 }
 
-void afficherPlayerCombo(vector<int> tab) {
+void afficherPlayerCombo(vector<int> tab, Character playerRef) {
     clearConsole();
-    cout << "Tour de Sukuna" << endl;
+    cout << "Tour de Sukuna :"<< endl;
+    cout << "Energie Occulte : " << playerRef.getOccultEnergy() << endl;
     cout << "Combos : ";
     for (size_t i = 0; i < tab.size(); i++) {
         cout << char(tab[i]);
@@ -171,7 +172,7 @@ void combat(Character player, Character oponnent) {
             default:
                 break;
             }
-            afficherPlayerCombo(tab1);
+            afficherPlayerCombo(tab1,player);
         }
         else if (touche == ZEROTOUCH) {
             //modifcouleur();
@@ -181,7 +182,7 @@ void combat(Character player, Character oponnent) {
         else if (touche == 8) { //touche "back space"
             if (!tab1.empty()) {
                 tab1.pop_back();
-                afficherPlayerCombo(tab1);
+                afficherPlayerCombo(tab1,player);
             }
         }
         else if (touche == 13) { // Touche "Enter"
@@ -198,6 +199,7 @@ void combat(Character player, Character oponnent) {
             }
 
             tab1.clear();
+
             if (boncombo) {
                 modifpolice(player.getCombosList()[indicetrouve]->getFontSizeX(), player.getCombosList()[indicetrouve]->getFontSizeY());
                 cout << "Vous attaquez avec le combo " << player.getCombosList()[indicetrouve]->getAttackName() << endl;
@@ -231,7 +233,7 @@ void combat(Character player, Character oponnent) {
                 modifpolice(24, 32);
                 oponnent.PlayerAttack(player, nb);
                 modifcouleur(RED);
-                cout << "Hp de " << player.getName() << " : " << player.getHp() << endl;
+                cout << "Hp de " << player.getName() << " : " << player.getHp()<<  endl;
             }
         }
     }
