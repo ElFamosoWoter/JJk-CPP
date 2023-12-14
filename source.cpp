@@ -319,15 +319,20 @@ int main() {
 
     Character CharaSukuna("Sukuna","", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaGojo };
+    vector<Character> Ennemies{CharaGojo };
     modifpolice(24, 32);
 
    // while (Ennemies.empty()) {
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             combat(CharaSukuna, Ennemies[nbE]);
             if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
-            else cout << "Vous avez termine GG my brother !" << endl;
-            
+            else {
+                playmusic("Music/imademo.wav",true);
+                cout << "Vous avez termine GG my brother !" << endl; 
+                Sleep(90000);
+            }
+             
+             
         }
     //}
 
