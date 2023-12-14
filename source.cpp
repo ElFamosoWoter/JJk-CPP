@@ -271,7 +271,7 @@ int main() {
         new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Jogo/JogoDomain.txt","Sound/DEJogo",5000, 4,12,20,2.75),
     };
     vector<Combos*> comboListNobara = {
-        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/",5000, 2,6,20,1.20),
+        new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/NobaraClou",5000, 2,6,20,1.20),
         new Combos(generateRandomVector(5),"Resonance","imageAscii/Nobara/NobaraBase.txt","Sound/NobaraResonance",5000, 2,6,20,1.20),
         new Combos(generateRandomVector(5),"Epingle a cheveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NobaraAttack",6000, 2,6,20,1.90),
     };
