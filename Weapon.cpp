@@ -1,4 +1,4 @@
-/*#include "Weapon.h"
+#include "Weapon.h"
 #include "Character.h"
 using namespace std;
 
@@ -67,4 +67,4 @@ void Weapon::SetCharacterValue(Character& character)
         character.setOccultEnergy(character.getOccultEnergy() + BoostValue);
         break;
     }
-}*/
+}
