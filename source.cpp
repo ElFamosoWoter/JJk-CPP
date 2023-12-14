@@ -148,6 +148,7 @@ void combat(Character player, Character oponnent) {
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
     Sleep(3000);
+    clearConsole();
     
     modifcouleur(RED);
     vector<int> tab1;
@@ -213,7 +214,7 @@ void combat(Character player, Character oponnent) {
                 afficherimage(player.getCombosList()[indicetrouve]->getImageLink());
                 playmusic(player.getCombosList()[indicetrouve]->getSoundLink(),false);
                 Sleep(player.getCombosList()[indicetrouve]->getSoundTime());
-                //clearConsole();
+                clearConsole();
                 modifpolice(24,32);
                 player.PlayerAttack(oponnent, indicetrouve);
                 modifcouleur(BLUE);
@@ -236,7 +237,7 @@ void combat(Character player, Character oponnent) {
                 afficherimage(oponnent.getCombosList()[nb]->getImageLink());
                 playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
                 Sleep(oponnent.getCombosList()[nb]->getSoundTime());
-                //clearConsole();
+                clearConsole();
                 modifpolice(24, 32);
                 oponnent.PlayerAttack(player, nb);
                 modifcouleur(RED);
@@ -313,7 +314,7 @@ int main() {
     Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 8, EDomainExtension::Infinite_Void, 500, 20, true, comboListGojo);
     Character CharaJogo("Jogo","ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
     Character CharaNobara("Nobara","ImageAscii/Nobara/SvsNobara.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
-    Character CharaToji("Toji","ImageAscii/Toji/SvsToji", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
+    Character CharaToji("Toji","ImageAscii/Toji/SvsToji.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
     Character CharaMahito("Mahito","ImageAscii/Mahito/SvsMahito.txt", 100, 8, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
 
     Character CharaSukuna("Sukuna","", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
