@@ -9,7 +9,7 @@ using namespace std;
 Character::Character(std::string na,string v, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe)
 {
 	setName(na);
-	setVS(vs);
+	setVS(v);
 	setHp(hp);
 	setAttack(atk);
 	setDomain(d);

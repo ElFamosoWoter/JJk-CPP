@@ -213,7 +213,7 @@ void combat(Character player, Character oponnent) {
                 afficherimage(player.getCombosList()[indicetrouve]->getImageLink());
                 playmusic(player.getCombosList()[indicetrouve]->getSoundLink(),false);
                 Sleep(player.getCombosList()[indicetrouve]->getSoundTime());
-                clearConsole();
+                //clearConsole();
                 modifpolice(24,32);
                 player.PlayerAttack(oponnent, indicetrouve);
                 modifcouleur(BLUE);
@@ -231,12 +231,12 @@ void combat(Character player, Character oponnent) {
                     Sleep(1000);
                 }
                 cout << endl;
-                cout << oponnent.getName() << " vous attaque vous " << oponnent.getCombosList()[nb]->getAttackName() << endl;
+                cout << oponnent.getName() << " vous attaque avec " << oponnent.getCombosList()[nb]->getAttackName() << endl;
                 modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
                 afficherimage(oponnent.getCombosList()[nb]->getImageLink());
                 playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
                 Sleep(oponnent.getCombosList()[nb]->getSoundTime());
-                clearConsole();
+                //clearConsole();
                 modifpolice(24, 32);
                 oponnent.PlayerAttack(player, nb);
                 modifcouleur(RED);
@@ -302,7 +302,7 @@ int main() {
         new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.35),//combo 1 Lacération
         new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
         new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,10),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
         //{LEFT,LEFT,UP}, //combo 6 Normal 2
