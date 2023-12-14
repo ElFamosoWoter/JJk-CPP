@@ -289,6 +289,12 @@ int main() {
         new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
     };
 
+        vector<Combos*> comboListYuta = {
+       new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+       new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/",7000, 4,12,20,1.20),
+       new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/.txt","Sound/",5000, 4,12,20,3),
+        };
+
     //modifpolice(2, 6);
     afficherimage("imageAscii/logo.txt");
     playmusic("Music/special.wav",true);
@@ -303,7 +309,7 @@ int main() {
         new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.35),//combo 1 Lacération
         new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
         new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,10),//combo 4 Extension du Territoire
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,10),//combo 4 Extension du Territoire
 
         //{UP,DOWN,DOWN}, //combo 5 Normal 1
         //{LEFT,LEFT,UP}, //combo 6 Normal 2
@@ -316,6 +322,7 @@ int main() {
     Character CharaNobara("Nobara","ImageAscii/Nobara/SvsNobara.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
     Character CharaToji("Toji","ImageAscii/Toji/SvsToji.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
     Character CharaMahito("Mahito","ImageAscii/Mahito/SvsMahito.txt", 100, 8, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
+    Character CharaYuta("Yuta Okotsu", "ImageAscii/", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListMahito);
 
     Character CharaSukuna("Sukuna","", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
