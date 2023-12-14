@@ -16,6 +16,7 @@
 #include <random>
 #include "Character.h"
 #include "Combos.h"
+#include "source.h"
 
 #pragma comment(lib, "winmm.lib")
 
@@ -145,7 +146,7 @@ int RNumber(int max) {
 void combat(Character player, Character oponnent) {
     clearConsole();
     modifpolice(4,12);
-    afficherimage("imageAscii/Nobara/SvsNobara.txt");
+    afficherimage(oponnent.getVS());
     Sleep(3000);
     
     modifcouleur(RED);
@@ -309,13 +310,13 @@ int main() {
         //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
-    Character CharaGojo("Gojo", 100, 8, EDomainExtension::Infinite_Void, 500, 20, true, comboListGojo);
-    Character CharaJogo("Jogo", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
-    Character CharaNobara("Nobara", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
-    Character CharaToji("Toji", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
-    Character CharaMahito("Mahito", 100, 8, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 8, EDomainExtension::Infinite_Void, 500, 20, true, comboListGojo);
+    Character CharaJogo("Jogo","ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
+    Character CharaNobara("Nobara","ImageAscii/Nobara/SvsNobara.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
+    Character CharaToji("Toji","ImageAscii/Toji/SvsToji", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
+    Character CharaMahito("Mahito","ImageAscii/Mahito/SvsMahito.txt", 100, 8, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
 
-    Character CharaSukuna("Sukuna", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
+    Character CharaSukuna("Sukuna","", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
     vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaGojo };
     modifpolice(24, 32);

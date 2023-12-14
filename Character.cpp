@@ -6,9 +6,10 @@
 
 using namespace std;
 
-Character::Character(std::string na, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe)
+Character::Character(std::string na,string v, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe)
 {
 	setName(na);
+	setVS(vs);
 	setHp(hp);
 	setAttack(atk);
 	setDomain(d);
@@ -26,6 +27,17 @@ string Character::getName()
 void Character::setName(string n)
 {
 	if (n != "") name = n;
+}
+
+string Character::getVS()
+{
+	return vs;
+}
+
+void Character::setVS(string v)
+{
+	if (v != "") vs = v;
+
 }
 
 int Character::getHp()
