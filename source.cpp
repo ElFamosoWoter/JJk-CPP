@@ -326,16 +326,16 @@ int main() {
 
     Character CharaSukuna("Sukuna","", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaMahito,CharaNobara,CharaJogo,CharaToji,CharaGojo };
+    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
     modifpolice(24, 32);
 
    // while (Ennemies.empty()) {
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             combat(CharaSukuna, Ennemies[nbE]);
-            if (nbE == 0 ) {
+            if (nbE == 2 ) {
                 afficherimage("ImageAscii/Yuji.txt");
                 playmusic("Music/Yuji.wav", true);
-                Sleep(20000);
+                Sleep(100000);
             }
             if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
             else {
