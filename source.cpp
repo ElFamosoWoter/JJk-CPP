@@ -335,7 +335,8 @@ int main() {
             if (nbE == 2 ) {
                 afficherimage("ImageAscii/Yuji.txt");
                 playmusic("Music/Yuji.wav", true);
-                Sleep(100000);
+                Sleep(10000);
+                clearConsole();
             }
             if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
             else {
