@@ -17,6 +17,7 @@
 #include "Character.h"
 #include "Combos.h"
 #include "source.h"
+#include "Fleau.h"
 
 #pragma comment(lib, "winmm.lib")
 
@@ -143,7 +144,7 @@ int RNumber(int max) {
 }
 
 //@Boucle de combat
-void combat(Character player, Character oponnent) {
+void combat(Character& player, Character& oponnent) {
     clearConsole();
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
@@ -222,6 +223,13 @@ void combat(Character player, Character oponnent) {
             }
             else {
                 cout << "Mauvais combo" << endl;
+                bool isFleau = dynamic_cast<Fleau*>(&oponnent) != nullptr;
+                cout << isFleau << endl;
+                if (isFleau) {
+                    // Cet objet est un Fleau
+                    cout << "Test" << endl;
+                }
+   
             }
             if (oponnent.getHp() > 0) {
                 int nb = RNumber(oponnent.getCombosList().size());
@@ -283,21 +291,21 @@ int main() {
         new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 4,12,20,1.20),
     };
 
-        vector<Combos*> comboListMahito = {
-        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/DEMahito",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitBlackFlash",7000, 4,12,20,1.20),
-        new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+    vector<Combos*> comboListMahito = {
+    new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+    new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitBlackFlash",7000, 4,12,20,1.20),
+    new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
     };
 
-        vector<Combos*> comboListYuta = {
-       new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/Yuta/YutaAttack.txt","Sound/",5000, 4,12,20,1.20),
-       new Combos(generateRandomVector(3),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/",7000, 4,12,20,1.20),
-       new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/",5000, 4,12,20,3),
-        };
+    vector<Combos*> comboListYuta = {
+   new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/Yuta/YutaAttack.txt","Sound/",5000, 4,12,20,1.20),
+   new Combos(generateRandomVector(3),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/",7000, 4,12,20,1.20),
+   new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/",5000, 4,12,20,3),
+    };
 
     //modifpolice(2, 6);
-    afficherimage("imageAscii/logo.txt");
-    playmusic("Music/special.wav",true);
+    //afficherimage("imageAscii/logo.txt");
+    //playmusic("Music/special.wav",true);
 
     std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
     char touchez = _getch();
@@ -318,38 +326,40 @@ int main() {
     };
 
     Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 8, EDomainExtension::Infinite_Void, 500, 20, true, comboListGojo);
-    Character CharaJogo("Jogo","ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
-    Character CharaNobara("Nobara","ImageAscii/Nobara/SvsNobara.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
-    Character CharaToji("Toji","ImageAscii/Toji/SvsToji.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
-    Character CharaMahito("Mahito","ImageAscii/Mahito/SvsMahito.txt", 10, 8, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
+    Character CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListToji);
+    Character CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", 10, 8, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
     Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", 100, 8, EDomainExtension::Pas, 500, 20, true, comboListYuta);
 
-    Character CharaSukuna("Sukuna","", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
+    Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
 
-    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
+    Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
+    cout << Jogoat.getOccultEnergy() << endl;
+    Jogoat.cursePowerUp();
+    cout << Jogoat.getOccultEnergy() << endl;
+
+    
+    vector<Character> Ennemies{Jogoat,CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
+    //vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
+
     modifpolice(24, 32);
-
-   // while (Ennemies.empty()) {
-        for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
-            combat(CharaSukuna, Ennemies[nbE]);
-            if (nbE == 2 ) {
-                afficherimage("ImageAscii/Yuji.txt");
-                playmusic("Music/Yuji.wav", true);
-                Sleep(10000);
-                clearConsole();
-            }
-            if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
-            else {
-                playmusic("Music/imademo.wav",true);
-                cout << "Vous avez termine GG my brother !" << endl; 
-                Sleep(90000);
-            }
-             
-             
+    for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
+        combat(CharaSukuna, Ennemies[nbE]);
+        if (nbE == 2) {
+            afficherimage("ImageAscii/Yuji.txt");
+            playmusic("Music/Yuji.wav", true);
+            Sleep(10000);
+            clearConsole();
         }
-    //}
+        if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
+        else {
+            playmusic("Music/imademo.wav", true);
+            cout << "Vous avez termine GG my brother !" << endl;
+            Sleep(90000);
+        }
 
-    //combat(CharaSukuna, CharaGojo);
 
+    }
     return 0;
 }

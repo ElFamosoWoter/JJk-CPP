@@ -34,6 +34,9 @@ public:
 	/*Constructeur d'un character*/
 	Character(string na,string vs, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe);
 
+	virtual ~Character() = default;
+	virtual void cursePowerUp();
+
 
 
 	string getName();

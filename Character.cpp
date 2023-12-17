@@ -19,6 +19,10 @@ Character::Character(std::string na,string v, int hp, int atk, EDomainExtension 
 	setCombosList(ComboListe);
 }
 
+void Character::cursePowerUp()
+{
+}
+
 string Character::getName()
 {
 	return name;
