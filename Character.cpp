@@ -19,6 +19,7 @@ Character::Character(std::string na,string v, int hp, int atk, EDomainExtension 
 	setCanAttack(ca);
 	setIsFleaux(isf);
 	setCombosList(ComboListe);
+	setInventory(inventory);
 }
 
 void Character::cursePowerUp()

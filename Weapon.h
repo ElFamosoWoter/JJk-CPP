@@ -20,7 +20,7 @@ class Weapon {
 private:
 
 	string name;
-	Character *characterToUp;
+	Character *characterToUp = nullptr;
 	whichStat statToBoost;
 
 
