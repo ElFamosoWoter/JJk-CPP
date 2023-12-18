@@ -164,8 +164,9 @@ vector<Combos*> TableauComboPlayer(bool d) {
 }
 
 //@Boucle de combat
-bool combat(bool IsSimpleMode, Character player, Character oponnent) {
+bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
     clearConsole();
+    //player.setHp(120);
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
     playmusic(oponnent.getOST(),true);
@@ -177,8 +178,8 @@ bool combat(bool IsSimpleMode, Character player, Character oponnent) {
     vector<int> tab1;
     int indice = -1;
     //afficherPlayerCombo(tab1, player);
+
     while (player.getHp() > 0 && oponnent.getHp() > 0) {
-        
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
             touche = _getch();  // Lire le code spécifique à la touche de direction
@@ -264,7 +265,7 @@ bool combat(bool IsSimpleMode, Character player, Character oponnent) {
                 }
                 cout << endl;
                 //cout << oponnent.getName() << " vous attaque avec " << oponnent.getCombosList()[nb]->getAttackName() << endl;
-                //clearConsole();
+                clearConsole();
                 modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
                 afficherimage(oponnent.getCombosList()[nb]->getImageLink());
                 playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
@@ -279,6 +280,36 @@ bool combat(bool IsSimpleMode, Character player, Character oponnent) {
             }
         }
     }
+
+    int selec = 0;
+    
+    for (size_t i = 0; i < oponnent.getInventory().size(); i++) {
+        string unite = "";
+        switch (oponnent.getInventory()[i]->getstatToBoost())
+        {
+        case W_atk:
+            unite = "Atk";
+            break;
+        case W_health:
+            unite = "Hp";
+            break;
+        case W_occultEnergy:
+            unite = "d'energie";
+            break;
+        default:
+            break;
+        }
+        cout << "Appuyez sur "<< i << " pour avoir " << oponnent.getInventory()[i]->getName() << " + " << oponnent.getInventory()[i]->getAddToStat()<< " " << unite << endl;
+    }
+    cin >> selec;
+    if (selec > oponnent.getInventory().size()) {
+        cout << "Entre invalid" << endl;
+    }
+    else {
+        cout <<"stat" << oponnent.getInventory()[selec]->getstatToBoost() << endl;
+        player.equipeWeapon(oponnent.getInventory()[selec]);
+    }
+    player.setHp(player.getHp() + 100);
     return oponnent.getHp()<=0;
 }
 
@@ -288,7 +319,6 @@ int main() {
     //Creation
     // 
     //de character
-  
 
     vector<Combos*> comboListGojo = {
         new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
@@ -339,7 +369,7 @@ int main() {
     };
 
     vector<Weapon*> WeaponsNobara = {
-             new Weapon("Clou",nullptr,W_atk,8),
+             new Weapon("Clou",nullptr,W_health,200),
              new Weapon("Marteau",nullptr,W_atk,10),
     };
     vector<Weapon*> WeaponsToji = {
@@ -367,7 +397,7 @@ int main() {
     vector<Weapon*> WeaponsSukuna = {
     };
 
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, EDomainExtension::Pas, 500, 20, true, false, WeaponsNobara, comboListNobara);
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 1, 6, EDomainExtension::Pas, 500, 20, true, false, WeaponsNobara, comboListNobara);
     Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, EDomainExtension::Pas, 500, 20, true, false, WeaponsToji, comboListToji);
     Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, WeaponsMahito, comboListMahito);
     Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, WeaponsJogo, comboListJogo);

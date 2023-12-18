@@ -31,7 +31,7 @@ void Weapon::setCharacterToUp(Character* ctu)
 
 whichStat Weapon::getstatToBoost()
 {
-	return whichStat();
+	return statToBoost;
 }
 
 void Weapon::setStatToBoost(whichStat stb)
