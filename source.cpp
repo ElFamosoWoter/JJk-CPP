@@ -113,7 +113,7 @@ void modifcouleur(WORD couleur) {
 void afficherPlayerCombo(vector<int> tab, Character playerRef) {
     clearConsole();
     modifpolice(24, 32);
-    cout << "Tour de Sukuna :"<< endl;
+    cout << "Tour de Sukuna"<< endl;
     cout << "Energie Occulte : " << playerRef.getOccultEnergy() << endl;
     cout << "Combos : ";
     for (size_t i = 0; i < tab.size(); i++) {
@@ -144,18 +144,19 @@ int RNumber(int max) {
 }
 
 //@Boucle de combat
-void combat(Character& player, Character& oponnent) {
+void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
     clearConsole();
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
     Sleep(3000);
     clearConsole();
-    
+    cout << "Jouez avec les fleches du clavier" << endl;
     modifcouleur(RED);
     vector<int> tab1;
     int indice = -1;
 
     while (player.getHp() > 0 && oponnent.getHp() > 0) {
+        afficherPlayerCombo(tab1, player);
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
 
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
@@ -181,9 +182,9 @@ void combat(Character& player, Character& oponnent) {
             default:
                 break;
             }
-            afficherPlayerCombo(tab1,player);
+            
         }
-        else if (touche == ZEROTOUCH) {
+        else if (touche == ZEROTOUCH && IsSimpleMode) {
             //modifcouleur();
             PlaySound(NULL, NULL, 0);
             afficherCombo(player.getCombosList());
@@ -211,7 +212,8 @@ void combat(Character& player, Character& oponnent) {
 
             if (boncombo) {
                 modifpolice(player.getCombosList()[indicetrouve]->getFontSizeX(), player.getCombosList()[indicetrouve]->getFontSizeY());
-                cout << "Vous attaquez avec le combo " << player.getCombosList()[indicetrouve]->getAttackName() << endl;
+                //cout << "Vous attaquez avec le combo " << player.getCombosList()[indicetrouve]->getAttackName() << endl;
+                clearConsole();
                 afficherimage(player.getCombosList()[indicetrouve]->getImageLink());
                 playmusic(player.getCombosList()[indicetrouve]->getSoundLink(),false);
                 Sleep(player.getCombosList()[indicetrouve]->getSoundTime());
@@ -240,7 +242,8 @@ void combat(Character& player, Character& oponnent) {
                     Sleep(1000);
                 }
                 cout << endl;
-                cout << oponnent.getName() << " vous attaque avec " << oponnent.getCombosList()[nb]->getAttackName() << endl;
+                //cout << oponnent.getName() << " vous attaque avec " << oponnent.getCombosList()[nb]->getAttackName() << endl;
+                clearConsole();
                 modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
                 afficherimage(oponnent.getCombosList()[nb]->getImageLink());
                 playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
@@ -303,12 +306,33 @@ int main() {
         new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/",5000, 4,12,20,3),
     };
 
-    modifpolice(2, 6);
+    //modifpolice(2, 6);
     afficherimage("imageAscii/logo.txt");
     playmusic("Music/special.wav",true);
 
-    std::cout << "Appuyez sur une touche (Fleches pour haut/bas/gauche/droite, 'q' pour quitter)" << std::endl;
+    std::cout << "Appuyez sur une touche pour continuer" << std::endl;
     char touchez = _getch();
+    clearConsole();
+    bool selection = true;
+    bool Modefacile = true;
+    char begin;
+    while (selection) {
+        cout << "Selectionnez votre mode de jeu" << endl << "F : Mode facile, vous avez accès à la liste des combos quand vous le souhaitez avec la touche 0" << endl << "D : Mode difficile, vous n'avez pas accès à la liste des combos quand vous le voulez" << endl;
+        cin >> begin;
+        if (begin == 'F') {
+            selection = false;
+            break;
+        }
+        else if (begin == 'D') {
+            Modefacile = false;
+            selection = false;
+            break;
+        }
+        else {
+            cout << "Selection non valide" << endl;
+        }
+    }
+
 
 
     //map< vector<int>, Combos> combos;
@@ -345,7 +369,7 @@ int main() {
 
     modifpolice(24, 32);
     for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
-        combat(CharaSukuna, Ennemies[nbE]);
+        combat(Modefacile,CharaSukuna, Ennemies[nbE]);
         if (nbE == 2) {
             afficherimage("ImageAscii/Yuji.txt");
             playmusic("Music/Yuji.wav", true);
@@ -357,6 +381,11 @@ int main() {
             playmusic("Music/imademo.wav", true);
             cout << "Vous avez termine GG my brother !" << endl;
             Sleep(90000);
+        }
+        if (!Modefacile) {
+            afficherCombo(CharaSukuna.getCombosList());
+            cout << endl << "Appuyez pour continuer" << endl;
+            cin >> touchez;
         }
 
 
