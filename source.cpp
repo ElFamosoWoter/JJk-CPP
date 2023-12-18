@@ -444,10 +444,12 @@ int main() {
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             if (combat(Modefacile, CharaSukuna, Ennemies[nbE])) {
                 if (nbE == 2) {
+                    modifpolice(1,3);
                     afficherimage("ImageAscii/Yuji.txt");
                     playmusic("Music/Yuji.wav", true);
                     Sleep(10000);
                     clearConsole();
+                    modifpolice(24,32);
                 }
                 if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
                 if (!Modefacile) {
