@@ -144,6 +144,25 @@ int RNumber(int max) {
     return randomNumber;
 }
 
+vector<Combos*> TableauComboPlayer(bool d) {
+    if (!d) {
+        return {
+        new Combos(generateRandomVector(4),"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,9),  //combo 0 Dissection
+        new Combos(generateRandomVector(4),"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.50),//combo 1 Lacération
+        new Combos(generateRandomVector(5),"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
+        new Combos(generateRandomVector(6),"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
+        new Combos(generateRandomVector(10),"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
+        };
+    }else
+        return {
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,9),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.50),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
+    };
+}
+
 //@Boucle de combat
 bool combat(bool IsSimpleMode, Character player, Character oponnent) {
     clearConsole();
@@ -154,6 +173,7 @@ bool combat(bool IsSimpleMode, Character player, Character oponnent) {
     clearConsole();
     cout << "Jouez avec les fleches du clavier" << endl;
     modifcouleur(RED);
+    afficherCombo(player.getCombosList());
     vector<int> tab1;
     int indice = -1;
     //afficherPlayerCombo(tab1, player);
@@ -316,15 +336,10 @@ int main() {
         new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
         new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
         new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
-
-        //{UP,DOWN,DOWN}, //combo 5 Normal 1
-        //{LEFT,LEFT,UP}, //combo 6 Normal 2
-        //{UP,UP,LEFT}, //combo 7 Normal 3
-        //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
     vector<Weapon*> testtab = {
-            new Weapon("test",nullptr,atk,20),
+            new Weapon("test",nullptr,W_atk,20),
     };
 
     Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt","Music/GojoMusic.wav", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, testtab, comboListGojo);
@@ -334,7 +349,6 @@ int main() {
     Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, testtab, comboListMahito);
     Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 100, 12, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListYuta);
 
-    Character CharaSukuna("Sukuna", "","", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListSukuna);
 
     bool wantplay = true;
 
@@ -367,14 +381,8 @@ int main() {
             }
         }
 
+        Character CharaSukuna("Sukuna", "", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, TableauComboPlayer(Modefacile));
 
-        //Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
-        //cout << Jogoat.getOccultEnergy() << endl;
-        //Jogoat.cursePowerUp();
-        //cout << Jogoat.getOccultEnergy() << endl;
-
-
-        //vector<Character> Ennemies{Jogoat,CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
         vector<Character> Ennemies{ CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
 
         modifpolice(24, 32);
