@@ -165,9 +165,43 @@ vector<Combos*> TableauComboPlayer(bool d) {
     };
 }
 
+void selecItem(Character player, Character oponnent){
+    int selec = 0;
+
+    for (size_t i = 0; i < oponnent.getInventory().size(); i++) {
+        string unite = "";
+        switch (oponnent.getInventory()[i]->getstatToBoost())
+        {
+        case W_atk:
+            unite = "Atk";
+            break;
+        case W_health:
+            unite = "Hp";
+            break;
+        case W_occultEnergy:
+            unite = "d'energie";
+            break;
+        default:
+            break;
+        }
+        cout << "Appuyez sur " << i << " pour avoir " << oponnent.getInventory()[i]->getName() << " + " << oponnent.getInventory()[i]->getAddToStat() << " " << unite << endl;
+    }
+    cin >> selec;
+    if (selec > oponnent.getInventory().size() - 1) {
+        cout << "Vous avez decide de ne pas prendre d'objet" << endl;
+        Sleep(5000);
+    }
+    else {
+        cout << "stat" << oponnent.getInventory()[selec]->getstatToBoost() << endl;
+        player.equipeWeapon(oponnent.getInventory()[selec]);
+    }
+    // player.setHp(player.getHp() + 100);
+}
+
 //@Boucle de combat
 bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
     clearConsole();
+    modifcouleur(BLUE);
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
     playmusic(oponnent.getOST(),true);
@@ -281,37 +315,7 @@ bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
             }
         }
     }
-
-    int selec = 0;
-    
-    for (size_t i = 0; i < oponnent.getInventory().size(); i++) {
-        string unite = "";
-        switch (oponnent.getInventory()[i]->getstatToBoost())
-        {
-        case W_atk:
-            unite = "Atk";
-            break;
-        case W_health:
-            unite = "Hp";
-            break;
-        case W_occultEnergy:
-            unite = "d'energie";
-            break;
-        default:
-            break;
-        }
-        cout << "Appuyez sur "<< i << " pour avoir " << oponnent.getInventory()[i]->getName() << " + " << oponnent.getInventory()[i]->getAddToStat()<< " " << unite << endl;
-    }
-    cin >> selec;
-    if (selec > oponnent.getInventory().size()) {
-        cout << "Entre invalid" << endl;
-    }
-    else {
-        cout <<"stat" << oponnent.getInventory()[selec]->getstatToBoost() << endl;
-        player.equipeWeapon(oponnent.getInventory()[selec]);
-    }
-    player.setHp(player.getHp() + 100);
-    return oponnent.getHp()<=0;
+    return oponnent.getHp() <= 0;
 }
 
 
@@ -338,53 +342,53 @@ int main() {
     };
     vector<Combos*> comboListNobara = {
         new Combos(generateRandomVector(3),"Marteau dans ta tronche gngngn","imageAscii/Nobara/NobaraBase.txt","Sound/NobaraClou",5000, 1,3,20,1.20),
-        new Combos(generateRandomVector(5),"Resonance","imageAscii/Nobara/NobaraBase.txt","Sound/NobaraResonance",5000, 1,3,20,1.20),
-        new Combos(generateRandomVector(5),"Epingle a cheveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NobaraAttack",6000, 1,3,20,1.90),
+        new Combos(generateRandomVector(3),"Resonance","imageAscii/Nobara/NobaraBase.txt","Sound/NobaraResonance",5000, 1,3,20,1.50),
+        new Combos(generateRandomVector(5),"Epingle a cheveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NobaraAttack",6000, 1,3,20,1.70),
     };
     vector<Combos*> comboListToji = {
-        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 2,6,0,1.20),
-        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.20),
-        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 2,6,0,1.20),
-        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 2,6,0,1.20),
-        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 2,6,0,1.60),
+        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.60),
+        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 2,6,0,1.60),
+        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 2,6,0,1.60),
+        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.60),
     };
 
     vector<Combos*> comboListMahito = {
-        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/MahitoBlackFlash",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitoBlackFlash",7000, 4,12,20,1.20),
-        new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/MahitoBlackFlash",5000, 4,12,20,1.30),
+        new Combos(generateRandomVector(4),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitoBlackFlash",7000, 4,12,20,1.75),
+        new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,3),
     };
 
     vector<Combos*> comboListYuta = {
         new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/Yuta/YutaAttack.txt","Sound/YutaShine",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/YutaRayonNoir",7000, 4,12,20,1.20),
-        new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/YutaRika",5000, 4,12,20,3),
+        new Combos(generateRandomVector(4),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/YutaRayonNoir",7000, 4,12,20,1.20),
+        new Combos(generateRandomVector(6),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/YutaRika",5000, 4,12,20,3),
     };
 
     //Creation des armes
     vector<Weapon*> WeaponsNobara = {
-             new Weapon("Clou",nullptr,W_health,200),
+             new Weapon("Clou",nullptr,W_health,40),
              new Weapon("Marteau",nullptr,W_atk,10),
     };
     vector<Weapon*> WeaponsToji = {
             new Weapon("Nuage Flottant",nullptr,W_atk,8),
             new Weapon("Lance celeste",nullptr,W_occultEnergy,100),
-            new Weapon("Sabre des Ames",nullptr,W_atk,10),
-            new Weapon("Chaîne de Mille Lieues",nullptr,W_health,10),
-            new Weapon("Glock27 bien gechard",nullptr,W_atk,10),
-             new Weapon("Fleaude stockage",nullptr,W_health,10),
+            new Weapon("Sabre des Ames",nullptr,W_atk,12),
+            new Weapon("Chaîne de Mille Lieues",nullptr,W_health,50),
+            new Weapon("Glock27 bien gechard",nullptr,W_atk,11),
+             new Weapon("Fleaude stockage",nullptr,W_health,60),
     };
     vector<Weapon*> WeaponsMahito = {
-            new Weapon("Fleau surpuissant",nullptr,W_atk,10),
-            new Weapon("Humains difformes",nullptr,W_health,10),
+            new Weapon("Fleau surpuissant",nullptr,W_atk,13),
+            new Weapon("Humains difformes",nullptr,W_health,75),
     };
     vector<Weapon*> WeaponsJogo = {
            new Weapon("Veston",nullptr,W_occultEnergy,100),
-           new Weapon("Volcan",nullptr,W_health,10),
+           new Weapon("Volcan",nullptr,W_atk,11),
     };
     vector<Weapon*> WeaponsYuta = {
-          new Weapon("Katana",nullptr,W_atk,8),
-          new Weapon("Bague de Rika le fleau sanguinaire meurtrier qui possede des arguments franchement plutot discutablent qui me convaincront certainement",nullptr,W_atk,15),
+          new Weapon("Katana",nullptr,W_atk,10),
+          new Weapon("Bague de Rika le fleau sanguinaire meurtrier qui possede des arguments franchement plutot discutablent qui me convaincront certainement",nullptr,W_atk,18),
     };
     vector<Weapon*> WeaponsGojo = {
          new Weapon("Bandeau du roi",nullptr,W_atk,300)
@@ -393,18 +397,18 @@ int main() {
     };
 
     //Creation des personnages
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 1, 6, 500, false, WeaponsNobara, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, 500, false, WeaponsToji, comboListToji);
-    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, 500, true, WeaponsMahito, comboListMahito);
-    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 100, 11, 500, true, WeaponsJogo, comboListJogo);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 100, 12, 500, false, WeaponsYuta, comboListYuta);
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 100, 13, 500, false, WeaponsGojo, comboListGojo);
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, 500, false, WeaponsNobara, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 150, 10, 500, false, WeaponsToji, comboListToji);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 250, 12, 500, true, WeaponsMahito, comboListMahito);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 350, 11, 500, true, WeaponsJogo, comboListJogo);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 400, 12, 500, false, WeaponsYuta, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 500, 13, 500, false, WeaponsGojo, comboListGojo);
 
     bool wantplay = true;
 
     //Boucle de jeu
     while (wantplay) {
-
+        clearConsole(),
         afficherimage("imageAscii/logo.txt");
         playmusic("Music/Op.wav", true);
 
@@ -439,6 +443,7 @@ int main() {
         bool loose = false;
         for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
             if (combat(Modefacile, CharaSukuna, Ennemies[nbE])) {
+                selecItem(CharaSukuna, Ennemies[nbE]);
                 if (nbE == 2) {
                     modifpolice(1,3);
                     afficherimage("ImageAscii/Yuji.txt");
