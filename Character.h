@@ -90,4 +90,7 @@ public:
 
 	void PlayerAttack(Character& target, int index);
 
+
+	void equipeWeapon(Weapon* weaponToEquipe);
+
 };

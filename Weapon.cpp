@@ -1,10 +1,11 @@
 #include "Weapon.h"
 
-Weapon::Weapon(string name, Character* characterToUp, whichStat statToBoost)
+Weapon::Weapon(string name, Character* characterToUp, whichStat statToBoost,int addToStat)
 {
 	setName(name);
 	setCharacterToUp(characterToUp);
 	setStatToBoost(statToBoost);
+	setAddToStat(addToStat);
 }
 
 string Weapon::getName()
@@ -37,3 +38,14 @@ void Weapon::setStatToBoost(whichStat stb)
 {
 	statToBoost = stb;
 }
+
+int Weapon::getAddToStat()
+{
+	return addToStat;
+}
+
+void Weapon::setAddToStat(int toAdd)
+{
+	addToStat = toAdd;
+}
+

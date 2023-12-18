@@ -137,6 +137,7 @@ vector<Weapon*> Character::getInventory()
 
 void Character::setInventory(vector<Weapon*> inventory)
 {
+	WeaponInventory = inventory;
 }
 
 vector<Combos*> Character::getCombosList()
@@ -164,4 +165,21 @@ void Character::PlayerAttack(Character& target, int index)
 		setOccultEnergy(getOccultEnergy() - getCombosList()[index]->getCost());
 		target.setHp(target.getHp() - (getAttack() * getCombosList()[index]->getBuffAtk()));
 	}
+}
+
+
+void Character::equipeWeapon(Weapon* weaponToEquipe)
+{
+	weaponToEquipe->setCharacterToUp(this);
+	switch (weaponToEquipe->getstatToBoost())
+	{
+	case atk:
+		setAttack(getAttack() + weaponToEquipe->getAddToStat());
+	case health:
+		setHp(getHp() + weaponToEquipe->getAddToStat());
+	
+	default:
+		break;
+	}
+
 }
