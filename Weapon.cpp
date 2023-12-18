@@ -10,7 +10,7 @@ Weapon::Weapon(string name, Character* characterToUp, whichStat statToBoost,int 
 
 string Weapon::getName()
 {
-	return string();
+	return name;
 }
 
 void Weapon::setName(string n)
