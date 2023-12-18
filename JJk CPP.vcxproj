@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Combos.cpp" />
-    <ClCompile Include="DomainExpension.cpp" />
     <ClCompile Include="Exorciste.cpp" />
     <ClCompile Include="Fleau.cpp" />
     <ClCompile Include="source.cpp" />
@@ -138,7 +137,6 @@
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="Combos.h" />
-    <ClInclude Include="DomainExpension.h" />
     <ClInclude Include="Exorciste.h" />
     <ClInclude Include="Fleau.h" />
     <ClInclude Include="source.h" />

@@ -30,6 +30,8 @@ public:
 	//Constructeur de la classe Combos : Combo, attackName, imageLink, soundLink, soundTime, imgSizeX, imgSizeY, cost, BuffAtk
 	Combos(vector<int> comboAttack, string attackName, string imageLink, const char* soundLink, int soundTime, int ImgX, int ImgY,int cost, float buffAtk);
 
+	//Get et set pour les combos
+
 	//get la liste de combos
 	vector<int> getCombo();
 	//set la liste de combo
