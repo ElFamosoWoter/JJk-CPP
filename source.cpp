@@ -1,5 +1,6 @@
 #pragma once
 
+//Includes 
 #include <iostream>
 #include <string>
 #include <Windows.h>
@@ -19,8 +20,10 @@
 #include "source.h"
 #include "Fleau.h"
 
+//Musique
 #pragma comment(lib, "winmm.lib")
 
+//Definir les fleches et la couleur
 #define UP 30
 #define DOWN 31
 #define LEFT 17
@@ -28,9 +31,8 @@
 #define ZEROTOUCH 48
 #define BLUE FOREGROUND_BLUE
 #define RED FOREGROUND_RED
-//#define BLUE FOREGROUND_BLUE
 
-
+//Cheatcode
 using namespace std;
 
 //Jouer une musique avec la music en param
@@ -41,9 +43,6 @@ void playmusic(const char* music,bool loop){
     else {
         PlaySoundA(music, NULL, SND_FILENAME | SND_ASYNC);
     }
-
-    // Attendre que le son soit terminé
-    //Sleep(90000);  // Vous pouvez ajuster cette valeur en fonction de la durée de votre son
 }
 
 //Modifier la police en fonction de la taille en x et en y
@@ -54,12 +53,12 @@ void modifpolice(int x, int y) {
     CONSOLE_FONT_INFOEX fontInfo;
     fontInfo.cbSize = sizeof(fontInfo);
     GetCurrentConsoleFontEx(hConsole, FALSE, &fontInfo);
-    fontInfo.dwFontSize.X = x; // Remplacez 12 par la taille souhaitée
-    fontInfo.dwFontSize.Y = y; // Remplacez 16 par la taille souhaitée
+    fontInfo.dwFontSize.X = x; 
+    fontInfo.dwFontSize.Y = y; 
     SetCurrentConsoleFontEx(hConsole, FALSE, &fontInfo);
 }
 
-//Effacer la console mais la fonctionne sautera
+//Effacer la console 
 void clearConsole() {
     system("cls");
 }
@@ -73,7 +72,6 @@ void afficherimage(string image) {
             cout << line << endl;
         }
     }
-    //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });
 }
 
 //Verifier si deux tableaux sont égaux
@@ -104,12 +102,13 @@ void afficherCombo(vector<Combos*> comboList){
     cout << endl;
 }
 
-//Modifier la couleur en bleue, les seules disponibles sont RED,GREEN, BLUE, INTENSITY
+//Modifier la couleur en bleue, les seules disponibles sont RED, BLUE
 void modifcouleur(WORD couleur) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, couleur);
 }
 
+//Afficher les infos du player et son combo actif
 void afficherPlayerCombo(vector<int> tab, Character playerRef) {
     clearConsole();
     modifpolice(24, 32);
@@ -122,7 +121,7 @@ void afficherPlayerCombo(vector<int> tab, Character playerRef) {
     }
 }
 
-//Les Randoms
+//Les Randoms de tableau
 vector<int> generateRandomVector(int size) {
     static mt19937 rng(static_cast<unsigned int>(time(nullptr))); // Générateur statique
     vector<int> possibleValues = { UP, DOWN, LEFT, RIGHT };
@@ -134,6 +133,8 @@ vector<int> generateRandomVector(int size) {
     }
     return result;
 }
+
+//Random en foction d'un integer max
 int RNumber(int max) {
     // Initialisation de la graine pour rand() en utilisant le temps actuel
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
@@ -144,6 +145,7 @@ int RNumber(int max) {
     return randomNumber;
 }
 
+//En fonction de la difficulte definir si tableau combo random ou pas
 vector<Combos*> TableauComboPlayer(bool d) {
     if (!d) {
         return {
@@ -166,18 +168,18 @@ vector<Combos*> TableauComboPlayer(bool d) {
 //@Boucle de combat
 bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
     clearConsole();
-    //player.setHp(120);
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
     playmusic(oponnent.getOST(),true);
     Sleep(3000);
+
     clearConsole();
+    modifpolice(24, 32);
     cout << "Jouez avec les fleches du clavier" << endl;
     modifcouleur(RED);
     afficherCombo(player.getCombosList());
     vector<int> tab1;
     int indice = -1;
-    //afficherPlayerCombo(tab1, player);
 
     while (player.getHp() > 0 && oponnent.getHp() > 0) {
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
@@ -205,21 +207,22 @@ bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
                 break;
             }
             afficherPlayerCombo(tab1, player);
-            
         }
-        else if (touche == ZEROTOUCH && IsSimpleMode) {
+
+        else if (touche == ZEROTOUCH && IsSimpleMode) {//Afficher le combo si on touche 0 et si on est en mode simple
             //modifcouleur();
             PlaySound(NULL, NULL, 0);
             afficherCombo(player.getCombosList());
             tab1.clear();
         }
-        else if (touche == 8) { //touche "back space"
+
+        else if (touche == 8) { //touche back space poour effacer
             if (!tab1.empty()) {
                 tab1.pop_back();
                 afficherPlayerCombo(tab1,player);
             }
         }
-        else if (touche == 13) { // Touche "Enter"
+        else if (touche == 13) { // Touche Enter pour valider
             bool boncombo = false;
             indice = -1;
             cout << endl;
@@ -236,7 +239,6 @@ bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
 
             if (boncombo) {
                 modifpolice(player.getCombosList()[indicetrouve]->getFontSizeX(), player.getCombosList()[indicetrouve]->getFontSizeY());
-                //cout << "Vous attaquez avec le combo " << player.getCombosList()[indicetrouve]->getAttackName() << endl;
                 clearConsole();
                 afficherimage(player.getCombosList()[indicetrouve]->getImageLink());
                 playmusic(player.getCombosList()[indicetrouve]->getSoundLink(),false);
@@ -264,7 +266,6 @@ bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
                     Sleep(1000);
                 }
                 cout << endl;
-                //cout << oponnent.getName() << " vous attaque avec " << oponnent.getCombosList()[nb]->getAttackName() << endl;
                 clearConsole();
                 modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
                 afficherimage(oponnent.getCombosList()[nb]->getImageLink());
@@ -320,6 +321,7 @@ int main() {
     // 
     //de character
 
+    //Creation des combos
     vector<Combos*> comboListGojo = {
         new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
         new Combos(generateRandomVector(3),"Rayon noir","imageAscii/Gojo/GojoBase.txt","Sound/GojoBase",5000, 1,3,20,1.5),
@@ -340,11 +342,11 @@ int main() {
         new Combos(generateRandomVector(5),"Epingle a cheveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NobaraAttack",6000, 1,3,20,1.90),
     };
     vector<Combos*> comboListToji = {
-        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 2,6,20,1.20),
-        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,20,1.20),
-        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 2,6,20,1.20),
-        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 2,6,20,1.20),
-        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,20,1.20),
+        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.20),
     };
 
     vector<Combos*> comboListMahito = {
@@ -359,15 +361,7 @@ int main() {
         new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/YutaRika",5000, 4,12,20,3),
     };
 
-    //map< vector<int>, Combos> combos;
-    vector<Combos*> comboListSukuna = {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,9),  //combo 0 Dissection
-        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.50),//combo 1 Lacération
-        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
-        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
-    };
-
+    //Creation des armes
     vector<Weapon*> WeaponsNobara = {
              new Weapon("Clou",nullptr,W_health,200),
              new Weapon("Marteau",nullptr,W_atk,10),
@@ -386,29 +380,31 @@ int main() {
     };
     vector<Weapon*> WeaponsJogo = {
            new Weapon("Veston",nullptr,W_occultEnergy,100),
-           new Weapon("Humains difformes",nullptr,W_health,10),
+           new Weapon("Volcan",nullptr,W_health,10),
     };
     vector<Weapon*> WeaponsYuta = {
           new Weapon("Katana",nullptr,W_atk,8),
           new Weapon("Bague de Rika le fleau sanguinaire meurtrier qui possede des arguments franchement plutot discutablent qui me convaincront certainement",nullptr,W_atk,15),
     };
     vector<Weapon*> WeaponsGojo = {
+         new Weapon("Bandeau du roi",nullptr,W_atk,300)
     };
     vector<Weapon*> WeaponsSukuna = {
     };
 
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 1, 6, EDomainExtension::Pas, 500, 20, true, false, WeaponsNobara, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, EDomainExtension::Pas, 500, 20, true, false, WeaponsToji, comboListToji);
+    //Creation des personnages
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, EDomainExtension::Pas, 200, 20, true, false, WeaponsNobara, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, EDomainExtension::Pas, 0, 20, true, false, WeaponsToji, comboListToji);
     Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, WeaponsMahito, comboListMahito);
     Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, WeaponsJogo, comboListJogo);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 100, 12, EDomainExtension::Pas, 500, 20, true, false, WeaponsYuta, comboListYuta);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/YutaMusic.wav", 100, 12, EDomainExtension::Pas, 500, 20, true, false, WeaponsYuta, comboListYuta);
     Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, WeaponsGojo, comboListGojo);
 
     bool wantplay = true;
 
+    //Boucle de jeu
     while (wantplay) {
 
-        //modifpolice(2, 6);
         afficherimage("imageAscii/logo.txt");
         playmusic("Music/Op.wav", true);
 
@@ -418,7 +414,7 @@ int main() {
         bool selection = true;
         bool Modefacile = true;
         char begin;
-        while (selection) {
+        while (selection) {//Selection du mode de jeu
             cout << "Selectionnez votre mode de jeu" << endl << "F : Mode facile, vous avez accès à la liste des combos quand vous le souhaitez avec la touche 0" << endl << "D : Mode difficile, vous n'avez pas accès à la liste des combos quand vous le voulez" << endl;
             cin >> begin;
             if (begin == 'F') {
@@ -435,7 +431,7 @@ int main() {
             }
         }
 
-        Character CharaSukuna("Sukuna", "", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, WeaponsSukuna, TableauComboPlayer(Modefacile));
+        Character CharaSukuna("Sukuna", "", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, WeaponsSukuna, TableauComboPlayer(Modefacile));//Creation du Character
 
         vector<Character> Ennemies{ CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
 
@@ -466,19 +462,23 @@ int main() {
             }
         }
         if (loose) {
+            modifpolice(1, 3);
             afficherimage("ImageAscii/Lose.txt");
             playmusic("Music/special.wav", true);
         }
         else {
+            modifpolice(1, 3);
             afficherimage("ImageAscii/Win.txt");
             playmusic("Music/imademo.wav", true);
         }
         
-        touchez = _getch();
+        Sleep(10000);
+        clearConsole();
+        modifpolice(24, 32);
 
         bool choixpasfait = true;
         while (choixpasfait) {
-            cout << "Voulez-vous rejouez ? O = Oui / N = Non" << endl;
+            cout << "Remi approuved ? O = Oui / N = Non" << endl;
             char rejouer;
             cin >> rejouer;
             if (rejouer == 'N') {
