@@ -7,17 +7,14 @@
 
 using namespace std;
 
-Character::Character(std::string na,string v, const char* o, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca,bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe)
+Character::Character(std::string na,string v, const char* o, int hp, int atk, int oe,bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe)
 {
 	setName(na);
 	setVS(v);
 	setOST(o);
 	setHp(hp);
 	setAttack(atk);
-	setDomain(d);
 	setOccultEnergy(oe);
-	setSukunaFingers(sf);
-	setCanAttack(ca);
 	setIsFleaux(isf);
 	setCombosList(ComboListe);
 	setInventory(inventory);
@@ -83,21 +80,6 @@ void Character::setAttack(int a)
 	
 }
 
-EDomainExtension Character::getDomain()
-{
-	return domain;
-}
-
-void Character::setDomain(EDomainExtension e)
-{
-	domain = e;
-}
-
-void Character::setDomaine(int index)
-{	
-	if (index < 0 && index>2) domain = EDomainExtension::Pas;
-	domain = static_cast<EDomainExtension>(index);
-}
 
 int Character::getOccultEnergy()
 {
@@ -110,27 +92,6 @@ void Character::setOccultEnergy(int oe)
 	else occultEnergy = oe;
 }
 
-int Character::getSukunaFingers()
-{
-	return sukunaFingers;
-}
-
-void Character::setSukunaFingers(int sf)
-{	
-	if (sf < 0) sukunaFingers = 0;
-	else sukunaFingers = sf;
-
-}
-
-bool Character::getCanAttack()
-{
-	return canAttack;
-}
-
-void Character::setCanAttack(bool ca)
-{
-	canAttack = ca;
-}
 
 bool Character::getIsFleaux()
 {

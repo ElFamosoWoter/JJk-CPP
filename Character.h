@@ -3,17 +3,8 @@
 #include <vector>
 #include "Combos.h"
 #include "Weapon.h"
-//#include "DomainExpansion.h"
 
 using namespace std;
-
-enum EDomainExtension
-{
-	Pas,
-	Infinite_Void,
-	Coffin_Of_The_Iron_Montain,
-	Orbe_isolement,
-};	
 
 class Character
 {
@@ -21,7 +12,6 @@ private:
 	string name;
 	int hp;
 	int attack;
-	EDomainExtension domain ;
 	int occultEnergy;
 	int sukunaFingers;
 	bool canAttack;
@@ -34,8 +24,8 @@ private:
 
 
 public:
-	/*Constructeur d'un character*/
-	Character(string na, string vs, const char* ost, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, bool isf, vector<Weapon*> inventory, vector<Combos*> ComboListe);
+	//Constructeur d'un character : Name, ImageVS, Sound, Health, Atk, Energie occulte, isFleau?, vecteur de pointeur de classe Weapon, vecteur de de pointeur classe Combos
+	Character(string na, string vs, const char* ost, int hp, int atk, int oe, bool isf, vector<Weapon*> inventory, vector<Combos*> ComboListe);
 
 	virtual ~Character() = default;
 	virtual void cursePowerUp();
@@ -66,23 +56,10 @@ public:
 	//set l'attaque du personnage
 	void setAttack(int a);
 
-	//
-	EDomainExtension getDomain();
-	void setDomain(EDomainExtension e);
-	void setDomaine(int index);
-
 	//get l'energie occulte du personnage
 	int getOccultEnergy();
 	//set l'energie occulte du personnage
 	void setOccultEnergy(int oe);
-
-	//
-	int getSukunaFingers();
-	void setSukunaFingers(int sf);
-
-	//
-	bool getCanAttack();
-	void setCanAttack(bool ca);
 
 	//get si le personnage est un fleau ou non
 	bool getIsFleaux();
