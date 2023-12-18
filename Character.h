@@ -77,7 +77,7 @@ public:
 	void setIsFleaux(bool isf);
 
 
-	Weapon* getInventory();
+	vector<Weapon*> getInventory();
 	void setInventory(vector<Weapon*> inventory);
 
 

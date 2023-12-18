@@ -129,7 +129,7 @@ void Character::setIsFleaux(bool isf)
 	isFleaux = isf;
 }
 
-Weapon* Character::getInventory()
+vector<Weapon*> Character::getInventory()
 {
 	return WeaponInventory;
 }
