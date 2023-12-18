@@ -1,45 +1,40 @@
 #pragma once
+#include <iostream>
 #include <string>
-#include <vector>
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#include "Character.h"
 
 using namespace std;
 
-enum StatsToBoost
+enum whichStat
 {
-    Attack,
-    Hp,
-    EnergieOcculte,
-        
+	atk,
+	health,
+	occultEnergy,
 };
-class Weapon
-{
+
+
+
+class Weapon {
+
+
+private:
+
+	string name;
+	Character *characterToUp;
+	whichStat statToBoost;
+
+
 public:
-    string name;
-    int BoostValue;
-    StatsToBoost BoostStats;
-    Character& PersonnageToUp;
+	Weapon(string name, Character* characterToUp,whichStat statToBoost);
 
+	string getName();
+	void setName(string n);
 
-    Weapon(std::string Na, int Bv, StatsToBoost SB, Character& PU);
+	Character* getcharacterToUp();
+	void setCharacterToUp(Character* ctu);
 
-    string GetIName();
-    void SetIName(string N);
-
-    StatsToBoost GetBoostStats();
-    void SetBoostStats(StatsToBoost SB);
-
-    int GetBoostValue();
-    void SetBoostValue(int BV);
-
-    Character GetPersonnageToUp();
-    void SetPersonnageToUp(Character& PU);
-
-    void SetCharacterValue(Character& character);
-
+	whichStat getstatToBoost();
+	void setStatToBoost(whichStat stb);
 
 
 };
-#endif CHARACTER_H
-
