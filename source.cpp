@@ -114,6 +114,7 @@ void afficherPlayerCombo(vector<int> tab, Character playerRef) {
     clearConsole();
     modifpolice(24, 32);
     cout << "Tour de Sukuna"<< endl;
+    cout << "Hp : " << playerRef.getHp() << endl;
     cout << "Energie Occulte : " << playerRef.getOccultEnergy() << endl;
     cout << "Combos : ";
     for (size_t i = 0; i < tab.size(); i++) {
@@ -144,7 +145,7 @@ int RNumber(int max) {
 }
 
 //@Boucle de combat
-bool combat(bool IsSimpleMode, Character& player, Character& oponnent) {
+bool combat(bool IsSimpleMode, Character player, Character oponnent) {
     clearConsole();
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
@@ -242,7 +243,7 @@ bool combat(bool IsSimpleMode, Character& player, Character& oponnent) {
                 }
                 cout << endl;
                 //cout << oponnent.getName() << " vous attaque avec " << oponnent.getCombosList()[nb]->getAttackName() << endl;
-                clearConsole();
+                //clearConsole();
                 modifpolice(oponnent.getCombosList()[nb]->getFontSizeX(), oponnent.getCombosList()[nb]->getFontSizeY());
                 afficherimage(oponnent.getCombosList()[nb]->getImageLink());
                 playmusic(oponnent.getCombosList()[nb]->getSoundLink(), false);
@@ -266,7 +267,6 @@ int main() {
     //Creation
     // 
     //de character
-    std::cout << "Accent aigu: \xB4" << std::endl;
 
     vector<Combos*> comboListGojo = {
         new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
@@ -296,8 +296,8 @@ int main() {
     };
 
     vector<Combos*> comboListMahito = {
-        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/DEMahito",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitBlackFlash",7000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/MahitoBlackFlash",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitoBlackFlash",7000, 4,12,20,1.20),
         new Combos(generateRandomVector(5),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,1.20),
     };
 
@@ -309,7 +309,7 @@ int main() {
 
     //map< vector<int>, Combos> combos;
     vector<Combos*> comboListSukuna = {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1),  //combo 0 Dissection
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,9),  //combo 0 Dissection
         new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.50),//combo 1 Lacération
         new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
         new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
@@ -322,7 +322,7 @@ int main() {
     };
 
     vector<Weapon*> testtab = {
-            new Weapon("test",nullptr,atk),
+            new Weapon("test",nullptr,atk,20),
     };
 
     Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, testtab, comboListGojo);
@@ -340,7 +340,7 @@ int main() {
 
         //modifpolice(2, 6);
         afficherimage("imageAscii/logo.txt");
-        playmusic("Music/special.wav", true);
+        playmusic("Music/Op.wav", true);
 
         std::cout << "Appuyez sur une touche pour continuer" << std::endl;
         char touchez = _getch();
@@ -373,7 +373,7 @@ int main() {
 
 
         //vector<Character> Ennemies{Jogoat,CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
-        vector<Character> Ennemies{ /*CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,*/CharaGojo };
+        vector<Character> Ennemies{ CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
 
         modifpolice(24, 32);
         bool loose = false;
