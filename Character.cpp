@@ -185,11 +185,16 @@ void Character::equipeWeapon(Weapon* weaponToEquipe)
 	weaponToEquipe->setCharacterToUp(this);
 	switch (weaponToEquipe->getstatToBoost())
 	{
-	case atk:
+	case W_atk:
 		setAttack(getAttack() + weaponToEquipe->getAddToStat());
-	case health:
+		break;
+	case W_health:
 		setHp(getHp() + weaponToEquipe->getAddToStat());
-	
+		break;
+	case W_occultEnergy:
+		setOccultEnergy(getOccultEnergy() + weaponToEquipe->getAddToStat());
+		break;
+				
 	default:
 		break;
 	}

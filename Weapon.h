@@ -7,9 +7,9 @@ using namespace std;
 
 enum whichStat
 {
-	atk,
-	health,
-	occultEnergy,
+	W_atk,
+	W_health,
+	W_occultEnergy
 };
 
 class Character;
