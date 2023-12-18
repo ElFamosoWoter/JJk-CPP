@@ -402,7 +402,7 @@ int main() {
     Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 150, 10, 500, false, WeaponsToji, comboListToji);
     Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 200, 12, 500, true, WeaponsMahito, comboListMahito);
     Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 250, 11, 500, true, WeaponsJogo, comboListJogo);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 300, 12, 500, false, WeaponsYuta, comboListYuta);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/YutaMusic.wav", 300, 12, 500, false, WeaponsYuta, comboListYuta);
     Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 450, 13, 500, false, WeaponsGojo, comboListGojo);
 
     bool wantplay = true;
