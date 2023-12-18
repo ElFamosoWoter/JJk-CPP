@@ -149,6 +149,7 @@ bool combat(bool IsSimpleMode, Character player, Character oponnent) {
     clearConsole();
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
+    playmusic(oponnent.getOST(),true);
     Sleep(3000);
     clearConsole();
     cout << "Jouez avec les fleches du clavier" << endl;
@@ -267,6 +268,7 @@ int main() {
     //Creation
     // 
     //de character
+  
 
     vector<Combos*> comboListGojo = {
         new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
@@ -325,14 +327,14 @@ int main() {
             new Weapon("test",nullptr,atk,20),
     };
 
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, testtab, comboListGojo);
-    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, testtab, comboListJogo);
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 6, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListToji);
-    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, testtab, comboListMahito);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", 100, 12, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt","Music/GojoMusic.wav", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, testtab, comboListGojo);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, testtab, comboListJogo);
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListToji);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, testtab, comboListMahito);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 100, 12, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListYuta);
 
-    Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListSukuna);
+    Character CharaSukuna("Sukuna", "","", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListSukuna);
 
     bool wantplay = true;
 

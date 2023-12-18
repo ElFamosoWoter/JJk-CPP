@@ -26,6 +26,7 @@ private:
 	int sukunaFingers;
 	bool canAttack;
 	string vs;
+	const char* ost;
 	bool isFleaux;
 	vector<Weapon*> WeaponInventory;
 	vector<Combos*> comboList;
@@ -34,7 +35,7 @@ private:
 
 public:
 	/*Constructeur d'un character*/
-	Character(string na,string vs, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe);
+	Character(string na, string vs, const char* ost, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, bool isf, vector<Weapon*> inventory, vector<Combos*> ComboListe);
 
 	virtual ~Character() = default;
 	virtual void cursePowerUp();
@@ -47,7 +48,8 @@ public:
 	string getVS();
 	void setVS(string v);
 
-
+	const char* getOST();
+	void setOST(const char* o);
 
 	//@return vie
 	int getHp();

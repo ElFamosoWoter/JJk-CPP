@@ -7,10 +7,11 @@
 
 using namespace std;
 
-Character::Character(std::string na,string v, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca,bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe)
+Character::Character(std::string na,string v, const char* o, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca,bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe)
 {
 	setName(na);
 	setVS(v);
+	setOST(o);
 	setHp(hp);
 	setAttack(atk);
 	setDomain(d);
@@ -46,6 +47,17 @@ void Character::setVS(string v)
 	if (v != "") vs = v;
 
 }
+
+const char* Character::getOST()
+{
+	return ost;
+}
+void Character::setOST(const char* o)
+{
+	if (o != "") ost = o;
+	
+}
+
 
 int Character::getHp()
 {
