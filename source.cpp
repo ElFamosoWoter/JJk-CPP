@@ -338,17 +338,41 @@ int main() {
         new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
     };
 
-    vector<Weapon*> testtab = {
-            new Weapon("test",nullptr,W_atk,20),
+    vector<Weapon*> WeaponsNobara = {
+             new Weapon("Clou",nullptr,W_atk,8),
+             new Weapon("Marteau",nullptr,W_atk,10),
+    };
+    vector<Weapon*> WeaponsToji = {
+            new Weapon("Nuage Flottant",nullptr,W_atk,8),
+            new Weapon("Lance celeste",nullptr,W_occultEnergy,100),
+            new Weapon("Sabre des Ames",nullptr,W_atk,10),
+            new Weapon("Chaîne de Mille Lieues",nullptr,W_health,10),
+            new Weapon("Glock27 bien gechard",nullptr,W_atk,10),
+             new Weapon("Fleaude stockage",nullptr,W_health,10),
+    };
+    vector<Weapon*> WeaponsMahito = {
+            new Weapon("Fleau surpuissant",nullptr,W_atk,10),
+            new Weapon("Humains difformes",nullptr,W_health,10),
+    };
+    vector<Weapon*> WeaponsJogo = {
+           new Weapon("Veston",nullptr,W_occultEnergy,100),
+           new Weapon("Humains difformes",nullptr,W_health,10),
+    };
+    vector<Weapon*> WeaponsYuta = {
+          new Weapon("Katana",nullptr,W_atk,8),
+          new Weapon("Bague de Rika le fleau sanguinaire meurtrier qui possede des arguments franchement plutot discutablent qui me convaincront certainement",nullptr,W_atk,15),
+    };
+    vector<Weapon*> WeaponsGojo = {
+    };
+    vector<Weapon*> WeaponsSukuna = {
     };
 
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt","Music/GojoMusic.wav", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, testtab, comboListGojo);
-    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, testtab, comboListJogo);
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListToji);
-    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, testtab, comboListMahito);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 100, 12, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListYuta);
-
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, EDomainExtension::Pas, 500, 20, true, false, WeaponsNobara, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 100, 10, EDomainExtension::Pas, 500, 20, true, false, WeaponsToji, comboListToji);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, WeaponsMahito, comboListMahito);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, WeaponsJogo, comboListJogo);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 100, 12, EDomainExtension::Pas, 500, 20, true, false, WeaponsYuta, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, WeaponsGojo, comboListGojo);
 
     bool wantplay = true;
 
@@ -381,7 +405,7 @@ int main() {
             }
         }
 
-        Character CharaSukuna("Sukuna", "", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, TableauComboPlayer(Modefacile));
+        Character CharaSukuna("Sukuna", "", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, WeaponsSukuna, TableauComboPlayer(Modefacile));
 
         vector<Character> Ennemies{ CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
 
