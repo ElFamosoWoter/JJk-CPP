@@ -302,9 +302,9 @@ int main() {
     };
 
     vector<Combos*> comboListYuta = {
-        new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/Yuta/YutaAttack.txt","Sound/",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(3),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/",7000, 4,12,20,1.20),
-        new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/",5000, 4,12,20,3),
+        new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/Yuta/YutaAttack.txt","Sound/YutaShine",5000, 4,12,20,1.20),
+        new Combos(generateRandomVector(3),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/YutaRayonNoir",7000, 4,12,20,1.20),
+        new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/YutaRika",5000, 4,12,20,3),
     };
 
     //modifpolice(2, 6);
