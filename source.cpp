@@ -154,11 +154,10 @@ void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
     modifcouleur(RED);
     vector<int> tab1;
     int indice = -1;
-
+    //afficherPlayerCombo(tab1, player);
     while (player.getHp() > 0 && oponnent.getHp() > 0) {
-        afficherPlayerCombo(tab1, player);
+        
         int touche = _getch();  // Récupérer la valeur spécifique à la flèche
-
         if (touche == 224) {  // Les touches spéciales génèrent 224 avant le code spécifique à la touche
             touche = _getch();  // Lire le code spécifique à la touche de direction
             indice++;
@@ -182,12 +181,14 @@ void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
             default:
                 break;
             }
+            afficherPlayerCombo(tab1, player);
             
         }
         else if (touche == ZEROTOUCH && IsSimpleMode) {
             //modifcouleur();
             PlaySound(NULL, NULL, 0);
             afficherCombo(player.getCombosList());
+            tab1.clear();
         }
         else if (touche == 8) { //touche "back space"
             if (!tab1.empty()) {
@@ -224,12 +225,10 @@ void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
                 cout << "Hp de "<<oponnent.getName() << " : " << oponnent.getHp() << endl;
             }
             else {
-                cout << "Mauvais combo" << endl;
-                bool isFleau = dynamic_cast<Fleau*>(&oponnent) != nullptr;
-                cout << isFleau << endl;
-                if (isFleau) {
-                    // Cet objet est un Fleau
-                    cout << "Test" << endl;
+                cout << "Le combo est invalide" << endl;
+                if (oponnent.getIsFleaux()) {
+                    cout << "Vous affrontez un fleau, vous avez peur ce qui le boost" << endl;
+                       
                 }
    
             }
@@ -252,7 +251,9 @@ void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
                 modifpolice(24, 32);
                 oponnent.PlayerAttack(player, nb);
                 modifcouleur(RED);
-                cout << "Hp de " << player.getName() << " : " << player.getHp()<<  endl;
+                cout << "Hp de " << player.getName() << " : " << player.getHp()<<  endl; 
+                afficherPlayerCombo(tab1, player);
+                tab1.clear();
             }
         }
     }
@@ -349,19 +350,19 @@ int main() {
         //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, comboListGojo);
-    Character CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 6, EDomainExtension::Pas, 500, 20, true, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListToji);
-    Character CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, comboListMahito);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", 100, 12, EDomainExtension::Pas, 500, 20, true, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, comboListGojo);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, comboListJogo);
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 6, EDomainExtension::Pas, 500, 20, true, false, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 10, EDomainExtension::Pas, 500, 20, true, false, comboListToji);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, comboListMahito);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", 100, 12, EDomainExtension::Pas, 500, 20, true, false, comboListYuta);
 
-    Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, comboListSukuna);
+    Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, comboListSukuna);
 
-    Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
-    cout << Jogoat.getOccultEnergy() << endl;
-    Jogoat.cursePowerUp();
-    cout << Jogoat.getOccultEnergy() << endl;
+    //Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
+    //cout << Jogoat.getOccultEnergy() << endl;
+    //Jogoat.cursePowerUp();
+    //cout << Jogoat.getOccultEnergy() << endl;
 
     
     //vector<Character> Ennemies{Jogoat,CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
