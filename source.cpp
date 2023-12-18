@@ -144,7 +144,7 @@ int RNumber(int max) {
 }
 
 //@Boucle de combat
-void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
+bool combat(bool IsSimpleMode, Character& player, Character& oponnent) {
     clearConsole();
     modifpolice(4,12);
     afficherimage(oponnent.getVS());
@@ -257,6 +257,7 @@ void combat(bool IsSimpleMode, Character& player, Character& oponnent) {
             }
         }
     }
+    return oponnent.getHp()<=0;
 }
 
 
@@ -265,8 +266,7 @@ int main() {
     //Creation
     // 
     //de character
-
-
+    std::cout << "Accent aigu: \xB4" << std::endl;
 
     vector<Combos*> comboListGojo = {
         new Combos(generateRandomVector(3),"Coup d'infini","imageAscii/Gojo/GojoBase2.txt","Sound/GojoBase",5000, 4,12,20,1.20),
@@ -307,35 +307,6 @@ int main() {
         new Combos(generateRandomVector(5),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/YutaRika",5000, 4,12,20,3),
     };
 
-    //modifpolice(2, 6);
-    afficherimage("imageAscii/logo.txt");
-    playmusic("Music/special.wav",true);
-
-    std::cout << "Appuyez sur une touche pour continuer" << std::endl;
-    char touchez = _getch();
-    clearConsole();
-    bool selection = true;
-    bool Modefacile = true;
-    char begin;
-    while (selection) {
-        cout << "Selectionnez votre mode de jeu" << endl << "F : Mode facile, vous avez accès à la liste des combos quand vous le souhaitez avec la touche 0" << endl << "D : Mode difficile, vous n'avez pas accès à la liste des combos quand vous le voulez" << endl;
-        cin >> begin;
-        if (begin == 'F') {
-            selection = false;
-            break;
-        }
-        else if (begin == 'D') {
-            Modefacile = false;
-            selection = false;
-            break;
-        }
-        else {
-            cout << "Selection non valide" << endl;
-        }
-    }
-
-
-
     //map< vector<int>, Combos> combos;
     vector<Combos*> comboListSukuna = {
         new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1),  //combo 0 Dissection
@@ -351,10 +322,10 @@ int main() {
     };
 
     vector<Weapon*> testtab = {
-        new Weapon("test",nullptr,atk),
+            new Weapon("test",nullptr,atk),
     };
 
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false,testtab, comboListGojo);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, testtab, comboListGojo);
     Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, testtab, comboListJogo);
     Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 6, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListNobara);
     Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListToji);
@@ -363,38 +334,100 @@ int main() {
 
     Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListSukuna);
 
+    bool wantplay = true;
 
-    //Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
-    //cout << Jogoat.getOccultEnergy() << endl;
-    //Jogoat.cursePowerUp();
-    //cout << Jogoat.getOccultEnergy() << endl;
+    while (wantplay) {
 
-    
-    //vector<Character> Ennemies{Jogoat,CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
-    vector<Character> Ennemies{CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
+        //modifpolice(2, 6);
+        afficherimage("imageAscii/logo.txt");
+        playmusic("Music/special.wav", true);
 
-    modifpolice(24, 32);
-    for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
-        combat(Modefacile,CharaSukuna, Ennemies[nbE]);
-        if (nbE == 2) {
-            afficherimage("ImageAscii/Yuji.txt");
-            playmusic("Music/Yuji.wav", true);
-            Sleep(10000);
-            clearConsole();
+        std::cout << "Appuyez sur une touche pour continuer" << std::endl;
+        char touchez = _getch();
+        clearConsole();
+        bool selection = true;
+        bool Modefacile = true;
+        char begin;
+        while (selection) {
+            cout << "Selectionnez votre mode de jeu" << endl << "F : Mode facile, vous avez accès à la liste des combos quand vous le souhaitez avec la touche 0" << endl << "D : Mode difficile, vous n'avez pas accès à la liste des combos quand vous le voulez" << endl;
+            cin >> begin;
+            if (begin == 'F') {
+                selection = false;
+                break;
+            }
+            else if (begin == 'D') {
+                Modefacile = false;
+                selection = false;
+                break;
+            }
+            else {
+                cout << "Selection non valide" << endl;
+            }
         }
-        if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
+
+
+        //Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
+        //cout << Jogoat.getOccultEnergy() << endl;
+        //Jogoat.cursePowerUp();
+        //cout << Jogoat.getOccultEnergy() << endl;
+
+
+        //vector<Character> Ennemies{Jogoat,CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
+        vector<Character> Ennemies{ /*CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,*/CharaGojo };
+
+        modifpolice(24, 32);
+        bool loose = false;
+        for (int nbE = 0; nbE < Ennemies.size(); nbE++) {
+            if (combat(Modefacile, CharaSukuna, Ennemies[nbE])) {
+                if (nbE == 2) {
+                    afficherimage("ImageAscii/Yuji.txt");
+                    playmusic("Music/Yuji.wav", true);
+                    Sleep(10000);
+                    clearConsole();
+                }
+                if (nbE < Ennemies.size() - 1) cout << "Bien jouer, maintenant place au prochain " << Ennemies[nbE + 1].getName() << endl;
+                if (!Modefacile) {
+                    afficherCombo(CharaSukuna.getCombosList());
+                    cout << endl << "Appuyez pour continuer" << endl;
+                    cin >> touchez;
+                }
+                
+            }
+            else {
+                cout << "Vous êtes mort" << endl;
+                loose = true;
+                break;
+            }
+        }
+        if (loose) {
+            afficherimage("ImageAscii/Lose.txt");
+            playmusic("Music/special.wav", true);
+        }
         else {
+            afficherimage("ImageAscii/Win.txt");
             playmusic("Music/imademo.wav", true);
-            cout << "Vous avez termine GG my brother !" << endl;
-            Sleep(90000);
         }
-        if (!Modefacile) {
-            afficherCombo(CharaSukuna.getCombosList());
-            cout << endl << "Appuyez pour continuer" << endl;
-            cin >> touchez;
+        
+        touchez = _getch();
+
+        bool choixpasfait = true;
+        while (choixpasfait) {
+            cout << "Voulez-vous rejouez ? O = Oui / N = Non" << endl;
+            char rejouer;
+            cin >> rejouer;
+            if (rejouer == 'N') {
+                wantplay = false;
+                choixpasfait = false;
+            }else if (rejouer == 'O') {
+                wantplay = true;
+                choixpasfait = false;
+            }
+            else {
+                cout << "Entree invalide, veuillez recommencer" << endl;
+            }
+
         }
-
-
+        
     }
     return 0;
 }
