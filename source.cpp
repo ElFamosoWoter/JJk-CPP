@@ -350,15 +350,18 @@ int main() {
         //{DOWN,DOWN,RIGHT} //combo 8 Normal 4
     };
 
+    vector<Weapon*> testtab = {
+        new Weapon("test",nullptr,atk),
+    };
 
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false, comboListGojo);
-    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, comboListJogo);
-    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 6, EDomainExtension::Pas, 500, 20, true, false, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 10, EDomainExtension::Pas, 500, 20, true, false, comboListToji);
-    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, comboListMahito);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", 100, 12, EDomainExtension::Pas, 500, 20, true, false, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", 100, 13, EDomainExtension::Infinite_Void, 500, 20, true, false,testtab, comboListGojo);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 11, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, true, testtab, comboListJogo);
+    Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", 100, 6, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListNobara);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListToji);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", 100, 12, EDomainExtension::Orbe_isolement, 500, 20, true, true, testtab, comboListMahito);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", 100, 12, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListYuta);
 
-    Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, {}, comboListSukuna);
+    Character CharaSukuna("Sukuna", "", 100, 10, EDomainExtension::Pas, 500, 20, true, false, testtab, comboListSukuna);
 
 
     //Fleau Jogoat("Jogo", "ImageAscii/Jogo/SvsJogo.txt", 100, 8, EDomainExtension::Coffin_Of_The_Iron_Montain, 500, 20, true, comboListJogo);
