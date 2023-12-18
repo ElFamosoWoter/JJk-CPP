@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "Combos.h"
-//#include "Weapon.h"
+#include "Weapon.h"
 //#include "DomainExpansion.h"
 
 using namespace std;
@@ -26,13 +26,15 @@ private:
 	int sukunaFingers;
 	bool canAttack;
 	string vs;
-	//vector<Weapon> WeaponInventory;
+	bool isFleaux;
+	vector<Weapon*> WeaponInventory;
 	vector<Combos*> comboList;
+	Weapon* equippedWeapon;
 
 
 public:
 	/*Constructeur d'un character*/
-	Character(string na,string vs, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe);
+	Character(string na,string vs, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe);
 
 	virtual ~Character() = default;
 	virtual void cursePowerUp();
@@ -71,9 +73,19 @@ public:
 	bool getCanAttack();
 	void setCanAttack(bool ca);
 
+	bool getIsFleaux();
+	void setIsFleaux(bool isf);
+
+
+	Weapon* getInventory();
+	void setInventory(vector<Weapon*> inventory);
+
+
 	vector<Combos*> getCombosList();
 	void setCombosList(vector<Combos*> listCombo);
 
+	Weapon* getEquippedWeapon();
+	void  setEquippedWeapon(Weapon* w);
 
 
 	void PlayerAttack(Character& target, int index);

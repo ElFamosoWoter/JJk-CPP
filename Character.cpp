@@ -1,12 +1,13 @@
 #pragma once
 #include "Character.h"
+#include "Weapon.h"
 #include <iostream>
 #include <string>
 
 
 using namespace std;
 
-Character::Character(std::string na,string v, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca, vector<Combos*> ComboListe)
+Character::Character(std::string na,string v, int hp, int atk, EDomainExtension d, int oe, int sf, bool ca,bool isf,vector<Weapon*> inventory, vector<Combos*> ComboListe)
 {
 	setName(na);
 	setVS(v);
@@ -16,6 +17,7 @@ Character::Character(std::string na,string v, int hp, int atk, EDomainExtension 
 	setOccultEnergy(oe);
 	setSukunaFingers(sf);
 	setCanAttack(ca);
+	setIsFleaux(isf);
 	setCombosList(ComboListe);
 }
 
@@ -117,6 +119,25 @@ void Character::setCanAttack(bool ca)
 	canAttack = ca;
 }
 
+bool Character::getIsFleaux()
+{
+	return isFleaux;
+}
+
+void Character::setIsFleaux(bool isf)
+{
+	isFleaux = isf;
+}
+
+Weapon* Character::getInventory()
+{
+	return WeaponInventory;
+}
+
+void Character::setInventory(vector<Weapon*> inventory)
+{
+}
+
 vector<Combos*> Character::getCombosList()
 {
 	return comboList;
@@ -125,6 +146,15 @@ vector<Combos*> Character::getCombosList()
 void Character::setCombosList(vector<Combos*> listCombo)
 {
 	comboList = listCombo;
+}
+
+Weapon* Character::getEquippedWeapon()
+{
+	return nullptr;
+}
+
+void Character::setEquippedWeapon(Weapon* w)
+{
 }
 
 void Character::PlayerAttack(Character& target, int index)
