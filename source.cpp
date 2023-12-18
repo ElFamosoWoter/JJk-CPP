@@ -200,6 +200,7 @@ void selecItem(Character player, Character oponnent){
 
 //@Boucle de combat
 bool combat(bool IsSimpleMode, Character& player, Character oponnent) {
+    player.setHp(player.getHp() + 100);
     clearConsole();
     modifcouleur(BLUE);
     modifpolice(4,12);
@@ -346,11 +347,11 @@ int main() {
         new Combos(generateRandomVector(5),"Epingle a cheveux","imageAscii/Nobara/NobaraAttack.txt","Sound/NobaraAttack",6000, 1,3,20,1.70),
     };
     vector<Combos*> comboListToji = {
-        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 2,6,0,1.60),
-        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.60),
-        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 2,6,0,1.60),
-        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 2,6,0,1.60),
-        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.60),
+        new Combos(generateRandomVector(3),"NuageFlottant","imageAscii/Toji/TojiNuageFlottant.txt","Sound/TojiBase",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"Sabre","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"LanceCeleste","imageAscii/Toji/TojiLanceCeleste.txt","Sound/TojiSabre",5000, 2,6,0,1.20),
+        new Combos(generateRandomVector(3),"SabreDesAmes","imageAscii/Toji/TojiSabreDesAmes.txt","Sound/TojiSabre",5000, 2,6,0,1.40),
+        new Combos(generateRandomVector(3),"Chaîne de Mille Lieues","imageAscii/Toji/TojiBase.txt","Sound/TojiBase",5000, 2,6,0,1.30),
     };
 
     vector<Combos*> comboListMahito = {
@@ -361,7 +362,7 @@ int main() {
 
     vector<Combos*> comboListYuta = {
         new Combos(generateRandomVector(3),"Coup de sabre ultime du puissant roi demon immortel","imageAscii/Yuta/YutaAttack.txt","Sound/YutaShine",5000, 4,12,20,1.20),
-        new Combos(generateRandomVector(4),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/YutaRayonNoir",7000, 4,12,20,1.20),
+        new Combos(generateRandomVector(4),"Black Flash mais en mieux pcq c'est yuta qui le fait et il est vraiment beau","imageAscii/Yuta/YutaAttack.txt","Sound/YutaRayonNoir",7000, 4,12,20,1.40),
         new Combos(generateRandomVector(6),"Ricka le fléau le plus smashable du monde","imageAscii/Yuta/YutaRika.txt","Sound/YutaRika",5000, 4,12,20,3),
     };
 
@@ -399,10 +400,10 @@ int main() {
     //Creation des personnages
     Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, 500, false, WeaponsNobara, comboListNobara);
     Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 150, 10, 500, false, WeaponsToji, comboListToji);
-    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 250, 12, 500, true, WeaponsMahito, comboListMahito);
-    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 350, 11, 500, true, WeaponsJogo, comboListJogo);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 400, 12, 500, false, WeaponsYuta, comboListYuta);
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 500, 13, 500, false, WeaponsGojo, comboListGojo);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 150, 12, 500, true, WeaponsMahito, comboListMahito);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 200, 11, 500, true, WeaponsJogo, comboListJogo);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/JogoMusic.wav", 230, 12, 500, false, WeaponsYuta, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 300, 13, 500, false, WeaponsGojo, comboListGojo);
 
     bool wantplay = true;
 
