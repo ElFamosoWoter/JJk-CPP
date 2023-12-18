@@ -106,7 +106,7 @@ int Character::getOccultEnergy()
 
 void Character::setOccultEnergy(int oe)
 {
-	if (oe < 0) std::cout << "Energie occulte negative" << std::endl;
+	if (oe < 0) occultEnergy = oe;
 	else occultEnergy = oe;
 }
 
