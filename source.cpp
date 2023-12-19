@@ -149,19 +149,19 @@ int RNumber(int max) {
 vector<Combos*> TableauComboPlayer(bool d) {
     if (!d) {
         return {
-        new Combos(generateRandomVector(4),"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.25),  //combo 0 Dissection
+        new Combos(generateRandomVector(4),"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.40),  //combo 0 Dissection
         new Combos(generateRandomVector(4),"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.50),//combo 1 Lacération
         new Combos(generateRandomVector(5),"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
-        new Combos(generateRandomVector(6),"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
-        new Combos(generateRandomVector(10),"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
+        new Combos(generateRandomVector(6),"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,2), //combo 3 Sort d'inversion
+        new Combos(generateRandomVector(10),"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3.2),//combo 4 Extension du Territoire
         };
     }else
         return {
-        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.25),  //combo 0 Dissection
-        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.50),//combo 1 Lacération
-        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,20,1.75),//combo 2 Flèche de feu
-        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.90), //combo 3 Sort d'inversion
-        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,20,3),//combo 4 Extension du Territoire
+        new Combos({DOWN, UP, RIGHT, UP},"Dissection","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,1.40),  //combo 0 Dissection
+        new Combos({UP, UP, UP, DOWN},"Laceration","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,30,1.50),//combo 1 Lacération
+        new Combos({LEFT, UP, RIGHT, DOWN, DOWN},"Fleche de feu","imageAscii/Sukuna/SukunaArrow.txt","Sound/SukunaArrow",3000, 2,6,40,1.75),//combo 2 Flèche de feu
+        new Combos({LEFT, LEFT, UP, RIGHT, LEFT, DOWN},"Sort inversion","imageAscii/Sukuna/SukunaBase.txt","Sound/SukunaBase",3000, 2,6,20,2), //combo 3 Sort d'inversion
+        new Combos({LEFT, LEFT, DOWN, UP, DOWN, UP,DOWN, LEFT, RIGHT,DOWN,UP,LEFT,RIGHT},"Extension du Territoire","imageAscii/Sukuna/SukunaDomain.txt","Sound/DESukuna",5000, 2,6,200,3.2),//combo 4 Extension du Territoire
     };
 }
 
@@ -357,7 +357,7 @@ int main() {
     vector<Combos*> comboListMahito = {
         new Combos(generateRandomVector(3),"Alterattion d'humains","imageAscii/Mahito/Mahito.txt","Sound/MahitoBlackFlash",5000, 4,12,20,1.30),
         new Combos(generateRandomVector(4),"Black Flash","imageAscii/Mahito/MahitoBase.txt","Sound/MahitoBlackFlash",7000, 4,12,20,1.75),
-        new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,3),
+        new Combos(generateRandomVector(6),"Extension du territoire","imageAscii/Mahito/MahitoDomain.txt","Sound/DEMahito",5000, 4,12,20,2.5),
     };
 
     vector<Combos*> comboListYuta = {
@@ -381,14 +381,14 @@ int main() {
     };
     vector<Weapon*> WeaponsMahito = {
             new Weapon("Fleau surpuissant",nullptr,W_atk,13),
-            new Weapon("Humains difformes",nullptr,W_health,75),
+            new Weapon("Humains difformes",nullptr,W_occultEnergy,200),
     };
     vector<Weapon*> WeaponsJogo = {
-           new Weapon("Veston",nullptr,W_occultEnergy,100),
+           new Weapon("Veston",nullptr,W_occultEnergy,200),
            new Weapon("Volcan",nullptr,W_atk,11),
     };
     vector<Weapon*> WeaponsYuta = {
-          new Weapon("Katana",nullptr,W_atk,10),
+          new Weapon("Katana",nullptr,W_atk,13),
           new Weapon("Bague de Rika le fleau sanguinaire meurtrier qui possede des arguments franchement plutot discutablent qui me convaincront certainement",nullptr,W_atk,18),
     };
     vector<Weapon*> WeaponsGojo = {
@@ -399,11 +399,11 @@ int main() {
 
     //Creation des personnages
     Character CharaNobara("Nobara", "ImageAscii/Nobara/SvsNobara.txt", "Music/NobaraMusic.wav", 100, 6, 500, false, WeaponsNobara, comboListNobara);
-    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 150, 10, 500, false, WeaponsToji, comboListToji);
-    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 200, 12, 500, true, WeaponsMahito, comboListMahito);
-    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 250, 11, 500, true, WeaponsJogo, comboListJogo);
-    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/YutaMusic.wav", 300, 12, 500, false, WeaponsYuta, comboListYuta);
-    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 450, 13, 500, false, WeaponsGojo, comboListGojo);
+    Character CharaToji("Toji", "ImageAscii/Toji/SvsToji.txt", "Music/GojoMusic.wav", 125, 10, 500, false, WeaponsToji, comboListToji);
+    Fleau CharaMahito("Mahito", "ImageAscii/Mahito/SvsMahito.txt", "Music/MahitoMusic.wav", 150, 12, 500, true, WeaponsMahito, comboListMahito);
+    Fleau CharaJogo("Jogo", "ImageAscii/Jogo/SvsJogo.txt", "Music/JogoMusic.wav", 200, 11, 500, true, WeaponsJogo, comboListJogo);
+    Character CharaYuta("Yuta Okkotsu", "ImageAscii/Yuta/SvsYuta.txt", "Music/YutaMusic.wav", 225, 12, 500, false, WeaponsYuta, comboListYuta);
+    Character CharaGojo("Gojo", "ImageAscii/Gojo/SvsGojo.txt", "Music/GojoMusic.wav", 400, 13, 500, false, WeaponsGojo, comboListGojo);
 
     bool wantplay = true;
 
@@ -436,7 +436,7 @@ int main() {
             }
         }
 
-        Character CharaSukuna("Sukuna", "", "", 100, 10, 500,false, WeaponsSukuna, TableauComboPlayer(Modefacile));//Creation du Character
+        Character CharaSukuna("Sukuna", "", "", 100, 10, 1000,false, WeaponsSukuna, TableauComboPlayer(Modefacile));//Creation du Character
 
         vector<Character> Ennemies{ CharaNobara,CharaToji,CharaMahito,CharaJogo,CharaYuta,CharaGojo };
 

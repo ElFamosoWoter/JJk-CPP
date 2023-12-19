@@ -134,7 +134,7 @@ void Character::setEquippedWeapon(Weapon* w)
 
 void Character::PlayerAttack(Character& target, int index)
 {
-	if (getOccultEnergy() > getCombosList()[index]->getCost()) {
+	if (getOccultEnergy() >= getCombosList()[index]->getCost()) {
 		setOccultEnergy(getOccultEnergy() - getCombosList()[index]->getCost());
 		target.setHp(target.getHp() - (getAttack() * getCombosList()[index]->getBuffAtk()));
 	}
